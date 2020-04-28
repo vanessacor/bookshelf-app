@@ -1,0 +1,12 @@
+.header-menu {
+  display: flex;
+  flex-direction: row;
+
+  ul {
+    list-style-type: none;
+  }
+
+  &-link {
+    text-decoration: none;
+  }
+}
