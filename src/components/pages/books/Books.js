@@ -35,7 +35,7 @@ class Books extends React.Component {
       <BookCard key={item.id} book={item} />
     ));
     return (
-      <div>
+      <div className="main">
         {this.state.showListOfBooks && <div className="book-list">{books}</div>}
         <AddBookBtn
           showForm={this.state.showAddForm}

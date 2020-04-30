@@ -5,10 +5,9 @@ function Select(props) {
     name,
     title,
     multiple,
-    type,
-    value,
+    value, // string = value
     placeholder,
-    options,
+    options, // [value: , label: }]
     onChange,
   } = props;
   return (
@@ -16,18 +15,20 @@ function Select(props) {
       <label htmlFor={name}> {title} </label>
       <select
         multiple={multiple}
-        type={type}
         name={name}
         value={value}
         onChange={onChange}
+        className="form-input"
       >
-        <option value="" disabled>
-          {placeholder}
-        </option>
+        <option value="">{placeholder}</option>
         {options.map((option) => {
           return (
-            <option key={option} value={option} label={option}>
-              {option}
+            <option
+              key={option.value}
+              value={option.value}
+              label={option.label}
+            >
+              {option.label}
             </option>
           );
         })}

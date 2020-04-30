@@ -1,7 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway&display=swap");
 @import "variables";
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway&display=swap");
 @import "typography";
 @import "reset";
 @import "layout";
 @import "app.scss";
-@import "./components/headerNav";
+@import "./components/header/header.scss";
+@import "./components/header/headerNav.scss";
+@import "./components/pages/books/books.scss";
+@import "./components/pages/books/bookCard.scss";
+@import "./components/pages/books/addBookBtn.scss";
+@import "./components/blocks/form/form.scss";

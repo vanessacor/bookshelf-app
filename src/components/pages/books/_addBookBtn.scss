@@ -1,0 +1,15 @@
+.button-add-element {
+  margin-bottom: 20px;
+  border: none;
+  background-color: $highlight-color;
+  box-shadow: 5px 5px 10px $accent-color-dark;
+  border-radius: 3px;
+  transition: 1s;
+  color: $base-color-light;
+  font-size: 20px;
+
+  &:hover {
+    box-shadow: none;
+    color: $font-color;
+  }
+}

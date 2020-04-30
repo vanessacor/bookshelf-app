@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.scss";
-import Books from "./components/Books";
-import Authors from "./components/Authors";
-import Genres from "./components/Genres";
+import Books from "./components/pages/books/Books";
+import Authors from "./components/pages/authors/Authors";
+import Genres from "./components/pages/genres/Genres";
 import App from "./App";
 // import * as serviceWorker from './serviceWorker';
 

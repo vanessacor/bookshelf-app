@@ -1,0 +1,23 @@
+.header-menu {
+  ul {
+    display: flex;
+    list-style-type: none;
+  }
+
+  &-link {
+    text-decoration: none;
+  }
+
+  li {
+    margin-right: 5px;
+
+    a {
+      text-decoration: none;
+      color: $font-color;
+      &:hover {
+        color: $highlight-color;
+        font-weight: bold;
+      }
+    }
+  }
+}

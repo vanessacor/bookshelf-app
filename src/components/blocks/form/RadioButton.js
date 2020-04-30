@@ -3,7 +3,8 @@ import React from "react";
 function RadioButton(props) {
   const { name, id, onChange, value, isSelected, label } = props;
   return (
-    <div className="form-group">
+    <div>
+      <label htmlFor={id}>{label}</label>
       <input
         name={name}
         id={id}
@@ -12,7 +13,6 @@ function RadioButton(props) {
         defaultChecked={isSelected}
         onChange={onChange}
       />
-      <label htmlFor={id}>{label}</label>
     </div>
   );
 }
