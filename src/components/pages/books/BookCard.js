@@ -8,7 +8,7 @@ function BookCard(props) {
   return (
     <section className="book-card">
       <h2>
-        <Link to="/books/{url}">{title}</Link>
+        <Link to={`${url}`}>{title}</Link>
       </h2>
       <div className="book-card-details">
         <h3>Author:</h3>
@@ -23,7 +23,6 @@ function BookCard(props) {
         <p>{status}</p>
         <h3>ISBN:</h3>
         <p>{isbn}</p>
-        <p>{url}</p>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.scss";
 import Books from "./components/pages/books/Books";
+import BookDetail from "./components/pages/books/BookDetail";
 import Authors from "./components/pages/authors/Authors";
 import Genres from "./components/pages/genres/Genres";
 import App from "./App";
@@ -12,15 +13,12 @@ ReactDOM.render(
   <Router>
     <App />
     <Switch>
-      <Route path="/books">
-        <Books />
-      </Route>
-      <Route path="/authors">
-        <Authors />
-      </Route>
-      <Route path="/genres">
-        <Genres />
-      </Route>
+      <Route exact path="/books" component={Books} />
+      <Route path="/books/:id" component={BookDetail} />
+
+      <Route path="/authors" component={Authors} />
+
+      <Route path="/genres" component={Genres} />
     </Switch>
   </Router>,
   document.getElementById("root")
