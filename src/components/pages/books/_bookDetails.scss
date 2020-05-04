@@ -1,0 +1,20 @@
+.bookDetails {
+  padding: 10px 10px 5px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px $accent-color-light;
+
+  h2,
+  h3 {
+    padding-top: 20px;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: lighter;
+  }
+
+  h3 {
+    color: $accent-color-dark;
+  }
+}

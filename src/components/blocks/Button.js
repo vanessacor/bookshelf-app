@@ -2,9 +2,9 @@ import React from "react";
 
 function Button(props) {
   const { className, onClick, title } = props;
-  console.log(className);
+  const classNames = `button ${className}`;
   return (
-    <button className={className} onClick={onClick}>
+    <button className={classNames} onClick={onClick}>
       {title}
     </button>
   );

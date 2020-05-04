@@ -2,7 +2,7 @@
   padding: 10px 10px 5px;
   margin-bottom: 30px;
   border-radius: 5px;
-  box-shadow: 3px 3px 10px $accent-color-light;
+  box-shadow: 1px 1px 5px $accent-color-light;
 
   h2 a {
     margin: 0;
@@ -11,11 +11,17 @@
     text-align: left;
     text-decoration: none;
     text-transform: uppercase;
+
+    &:hover {
+      color: $highlight-color;
+      font-weight: bold;
+    }
   }
 
   .book-card-details {
     h3 {
       margin: 0;
+      padding-top: 20px;
       color: $accent-color-dark;
     }
     p {

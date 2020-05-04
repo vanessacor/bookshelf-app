@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function BookCard(props) {
   const book = props.book;
+  console.log("BookCard", book);
   const { title, author, genre, isbn, status, url } = book;
 
   return (

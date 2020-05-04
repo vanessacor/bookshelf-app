@@ -223,7 +223,7 @@ class BookFormContainer extends React.Component {
           onChange={this.handleInput}
         />
         <Button
-          className={"button-submit"}
+          className={"submit"}
           onClick={this.handleFormSubmit}
           title={"Add"}
         />
