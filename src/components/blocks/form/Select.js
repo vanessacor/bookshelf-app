@@ -18,7 +18,7 @@ function Select(props) {
         name={name}
         value={value}
         onChange={onChange}
-        className="form-input"
+        className="form-input form-select"
       >
         <option value="">{placeholder}</option>
         {options.map((option) => {

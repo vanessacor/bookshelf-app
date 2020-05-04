@@ -8,12 +8,11 @@ function CheckBox(props) {
       <label htmlFor={name} className="form-label">
         {title}
       </label>
-      <div className="checkbox-group">
+      <div className="form-checkbox">
         {options.map((option) => {
           return (
             <label key={option.value}>
               <input
-                className="form-checkbox"
                 id={name}
                 name={name}
                 onChange={onChange}
