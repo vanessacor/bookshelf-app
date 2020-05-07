@@ -1,4 +1,5 @@
 import React from "react";
+import Authors from "./Authors";
 import Input from "../../blocks/form/Input";
 import Button from "../../blocks/Button";
 
@@ -12,6 +13,7 @@ class AuthorFormContainer extends React.Component {
         dateOfBirth: "",
         dateOfDeath: "",
       },
+      ShowForm: true,
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -21,25 +23,19 @@ class AuthorFormContainer extends React.Component {
   handleInput(event) {
     let value = event.target.value;
     let name = event.target.name;
-    this.setState(
-      (prevState) => {
-        return {
-          newAuthor: {
-            ...prevState.newAuthor,
-            [name]: value,
-          },
-        };
-      },
-      () => console.log(this.state.newAuthor)
-    );
+    this.setState((prevState) => {
+      return {
+        newAuthor: {
+          ...prevState.newAuthor,
+          [name]: value,
+        },
+      };
+    });
   }
 
   handleFormSubmit(event) {
     event.preventDefault();
     let authorData = this.state.newAuthor;
-    console.log("book data", authorData);
-    // const authorDataJson = JSON.stringify(authorData);
-    // console.log("bookData Json", authorDataJson);
 
     fetch("http://localhost:8000/authors", {
       method: "POST",
@@ -52,8 +48,14 @@ class AuthorFormContainer extends React.Component {
       response.json().then((data) => {
         console.log("Successful" + data);
       });
+      this.setState({
+        ShowForm: false,
+      });
     });
+
+    this.render();
   }
+
   handleClearForm(event) {
     event.preventDefault();
     this.setState({
@@ -67,6 +69,16 @@ class AuthorFormContainer extends React.Component {
   }
 
   render() {
+    const { ShowForm } = this.state;
+
+    if (!ShowForm) {
+      return <Authors />;
+    }
+
+    return this.renderForm();
+  }
+
+  renderForm() {
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>
         <legend className="form-legend">New Author</legend>

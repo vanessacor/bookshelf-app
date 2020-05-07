@@ -16,4 +16,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## todo
 
 - create Authors pages
+  -- fix lifespan if dateOfDeath empty, return age
 - create Genre pages

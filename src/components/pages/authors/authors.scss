@@ -1,0 +1,13 @@
+.Authors {
+  //
+  .addAuthor {
+    a {
+      text-decoration: none;
+      color: $base-color-light;
+
+      &:hover {
+        color: $font-color;
+      }
+    }
+  }
+}

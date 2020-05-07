@@ -1,4 +1,5 @@
 import React from "react";
+import Books from "./Books";
 import Input from "../../blocks/form/Input";
 import Select from "../../blocks/form/Select";
 import RadioButton from "../../blocks/form/RadioButton";
@@ -24,6 +25,7 @@ class BookFormContainer extends React.Component {
       genreOptions: [],
       selectedStatus: "Read",
       selectedGenres: [],
+      showForm: true,
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleRadioBtn = this.handleRadioBtn.bind(this);
@@ -47,34 +49,28 @@ class BookFormContainer extends React.Component {
   handleInput(event) {
     let value = event.target.value;
     let name = event.target.name;
-    this.setState(
-      (prevState) => {
-        return {
-          newBook: {
-            ...prevState.newBook,
-            [name]: value,
-          },
-        };
-      },
-      () => console.log(this.state.newBook)
-    );
+    this.setState((prevState) => {
+      return {
+        newBook: {
+          ...prevState.newBook,
+          [name]: value,
+        },
+      };
+    });
   }
 
   handleRadioBtn(event) {
     let value = event.target.value;
     let name = event.target.name;
-    this.setState(
-      (prevState) => {
-        return {
-          newBook: {
-            ...prevState.newBook,
-            [name]: value,
-          },
-          selectedStatus: value,
-        };
-      },
-      () => console.log(this.state.newBook)
-    );
+    this.setState((prevState) => {
+      return {
+        newBook: {
+          ...prevState.newBook,
+          [name]: value,
+        },
+        selectedStatus: value,
+      };
+    });
   }
 
   handleCheckBox(event) {
@@ -92,18 +88,15 @@ class BookFormContainer extends React.Component {
       newSelectionArray = [...this.state.selectedGenres, newSelection];
     }
 
-    this.setState(
-      (prevState) => {
-        return {
-          newBook: {
-            ...prevState.newBook,
-            [name]: newSelectionArray,
-          },
-          selectedGenres: [newSelectionArray],
-        };
-      },
-      () => console.log("Selected Genres", this.state.selectedGenres)
-    );
+    this.setState((prevState) => {
+      return {
+        newBook: {
+          ...prevState.newBook,
+          [name]: newSelectionArray,
+        },
+        selectedGenres: [newSelectionArray],
+      };
+    });
   }
 
   handleFormSubmit(event) {
@@ -124,8 +117,15 @@ class BookFormContainer extends React.Component {
       response.json().then((data) => {
         console.log("Successful" + data);
       });
+      this.setState({
+        showForm: false,
+      });
     });
+
+    this.render();
+    console.log("showForm", this.state.showForm);
   }
+
   handleClearForm(event) {
     event.preventDefault();
     this.setState({
@@ -141,16 +141,22 @@ class BookFormContainer extends React.Component {
   }
 
   render() {
-    console.log("authorOptions", this.state.authorsOptions);
+    const { ShowForm } = this.state;
+
+    if (!ShowForm) {
+      return <Books />;
+    }
+
+    return this.renderForm();
+  }
+
+  renderForm() {
     const authors = this.state.authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
     });
     const genres = this.state.genreOptions.map((genre) => {
       return { value: genre.id, label: genre.name };
-      // return genre.name;
     });
-    console.log("authorslist", authors);
-    console.log(genres);
 
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>

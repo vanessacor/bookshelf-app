@@ -1,0 +1,32 @@
+.author-card {
+  padding: 10px 10px 5px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px $accent-color-light;
+
+  h2 a {
+    margin: 0;
+    color: $font-color;
+    font-weight: lighter;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $highlight-color;
+      font-weight: bold;
+    }
+  }
+
+  .book-card-details {
+    h3 {
+      margin: 0;
+      padding-top: 20px;
+      color: $accent-color-dark;
+    }
+    p {
+      padding-top: 5px;
+      margin: 0 0 10px 0;
+    }
+  }
+}

@@ -49,7 +49,7 @@ class Authors extends React.Component {
       <>
         {showList && <div className="author-list">{cards}</div>}
         {!showForm && (
-          <button className="button addBookBtn">
+          <button className="button addAuthor">
             <Link to={"/authors/create"}>Add Author</Link>
           </button>
         )}

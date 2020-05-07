@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function AuthorCard(props) {
   const author = props.author;
-  console.log("author", author);
   const { name, lifespan, url } = author;
 
   return (
