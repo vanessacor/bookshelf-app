@@ -81,10 +81,6 @@ class BookFormContainer extends React.Component {
     event.preventDefault();
     const newSelection = event.target.value;
     const name = event.target.name;
-    // const genreNames = this.state.genreOptions.map((genre) => {
-    //   return genre.name;
-    // });
-    console.log("checkbox", this.selectedGenres);
 
     let newSelectionArray;
 
