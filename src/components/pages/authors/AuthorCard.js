@@ -1,26 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 
 function AuthorCard(props) {
   const author = props.author;
-  const { name, lifespan, url } = author;
+  const { name, dateOfDeath, lifespan, url } = author;
 
   return (
-    <section className="book-card">
+    <section className="author-card">
       <h2>
         <Link to={`${url}`}>{name}</Link>
       </h2>
       <div className="author-card-details">
-        <h3>Lifespan:</h3>
-        <p>{lifespan}</p>
-        {/* <h3>Books:</h3>
-        <p>
-          {books.map((item) => (
-            <span key={item.id}>{item.title} </span>
-          ))}
-        </p> */}
-        <h3>URL:</h3>
-        <p>{url}</p>
+        {dateOfDeath ? (
+          <p>
+            Died in <Moment format="DD/MM/YYYY">{dateOfDeath}</Moment> at the
+            age of {lifespan}
+          </p>
+        ) : (
+          <p>{lifespan} years old</p>
+        )}
       </div>
     </section>
   );
