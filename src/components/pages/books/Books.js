@@ -2,26 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import BookCard from "./BookCard";
-import BookFormContainer from "./BookFormContainer";
 import Loader from "../../blocks/Loader";
+import { withApiClient } from "../../../services/withApiClient";
 
 class Books extends React.Component {
   state = {
     loading: true,
     books: undefined,
-    showList: true,
-    showForm: false,
   };
 
   componentDidMount() {
-    fetch("http://localhost:8000/books")
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          loading: false,
-          books: data,
-        });
+    const { apiClient } = this.props;
+
+    apiClient.getAllBooks().then((data) => {
+      this.setState({
+        loading: false,
+        books: data,
       });
+    });
   }
 
   render() {
@@ -40,20 +38,19 @@ class Books extends React.Component {
   }
 
   renderList() {
-    const { books, showList, showForm } = this.state;
-    const cards = books.map((item) => <BookCard key={item.id} book={item} />);
+    const { books } = this.state;
+    const cards = books.map((item) => {
+      return <BookCard key={item.id} book={item} />;
+    });
     return (
       <>
-        {showList && <div className="book-list">{cards}</div>}
-        {!showForm && (
-          <button className="button addBook">
-            <Link to={"/books/create"}>Add Book</Link>
-          </button>
-        )}
-        {showForm && <BookFormContainer />}
+        <div className="book-list">{cards}</div>
+        <button className="button addBook">
+          <Link to={"/books/create"}>Add Book</Link>
+        </button>
       </>
     );
   }
 }
 
-export default Books;
+export default withApiClient(Books);

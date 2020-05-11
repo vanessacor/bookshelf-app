@@ -19,7 +19,7 @@ function App() {
           <Switch>
             <Route exact path="/books" component={Books} />
 
-            <Route exact path="/books/create" component={BookFormContainer} />
+            <Route path="/books/create" component={BookFormContainer} />
             <Route path="/books/:id" component={BookDetails} />
 
             <Route exact path="/authors" component={Authors} />

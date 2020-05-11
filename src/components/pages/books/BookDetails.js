@@ -9,11 +9,9 @@ class BookDetail extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    console.log("componentDidMount", this.props, id);
     fetch(`http://localhost:8000/books/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("fetch then", data);
         this.setState({
           loading: false,
           book: data,
@@ -22,7 +20,6 @@ class BookDetail extends Component {
   }
 
   render() {
-    console.log("render", this.state);
     const { loading } = this.state.loading;
 
     const { title, author, summary, genre, isbn, status } = this.state.book;
@@ -35,8 +32,12 @@ class BookDetail extends Component {
       this.state.book && (
         <div className="bookDetails">
           <h2>{title}</h2>
-          <h3>Author:</h3>
-          <p>{author.name}</p>
+          {author && (
+            <>
+              <h3>Author:</h3>
+              <p>{author.name}</p>
+            </>
+          )}
           <h3>Summary:</h3>
           <p>{summary}</p>
           <h3>Genres:</h3>

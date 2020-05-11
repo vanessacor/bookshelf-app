@@ -1,15 +1,19 @@
 import React from "react";
-import Books from "./Books";
+
+import { withApiClient } from "../../../services/withApiClient";
 import Input from "../../blocks/form/Input";
 import Select from "../../blocks/form/Select";
 import RadioButton from "../../blocks/form/RadioButton";
 import Button from "../../blocks/Button";
 import CheckBox from "../../blocks/form/CheckBox";
+import ValidationFeedback from "../../blocks/form/ValidationFeedBack";
+import ErrorBanner from "../../blocks/ErrorBanner";
 
 class BookFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      error: undefined,
       newBook: {
         title: "",
         author: {
@@ -25,7 +29,7 @@ class BookFormContainer extends React.Component {
       genreOptions: [],
       selectedStatus: "Read",
       selectedGenres: [],
-      showForm: true,
+      submitted: false,
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleRadioBtn = this.handleRadioBtn.bind(this);
@@ -35,15 +39,16 @@ class BookFormContainer extends React.Component {
   }
 
   componentDidMount() {
-    Promise.all([
-      fetch("http://localhost:8000/authors").then((res) => res.json()),
-      fetch("http://localhost:8000/genres").then((res) => res.json()),
-    ]).then(([res1, res2]) => {
-      this.setState({
-        authorsOptions: res1,
-        genreOptions: res2,
-      });
-    });
+    const { apiClient } = this.props;
+
+    Promise.all([apiClient.getAllAuthors(), apiClient.getAllGenres()]).then(
+      ([res1, res2]) => {
+        this.setState({
+          authorsOptions: res1,
+          genreOptions: res2,
+        });
+      }
+    );
   }
 
   handleInput(event) {
@@ -102,28 +107,19 @@ class BookFormContainer extends React.Component {
   handleFormSubmit(event) {
     event.preventDefault();
     let bookData = this.state.newBook;
-    console.log("book data", bookData);
-    // const bookdataJson = JSON.stringify(bookData);
-    // console.log("bookData Json", bookdataJson);
+    // this.setState({ submitted: true });
 
-    fetch("http://localhost:8000/books", {
-      method: "POST",
-      body: JSON.stringify(bookData),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      response.json().then((data) => {
-        console.log("Successful" + data);
-      });
-      this.setState({
-        showForm: false,
-      });
+    const { apiClient } = this.props;
+
+    apiClient.createBook(bookData).then((response) => {
+      if (response.status === 201) {
+        response.json().then((data) => {
+          this.props.history.push(data.url);
+        });
+      } else {
+        this.setState({ error: true });
+      }
     });
-
-    this.render();
-    console.log("showForm", this.state.showForm);
   }
 
   handleClearForm(event) {
@@ -141,16 +137,8 @@ class BookFormContainer extends React.Component {
   }
 
   render() {
-    const { ShowForm } = this.state;
+    const { error } = this.state;
 
-    if (!ShowForm) {
-      return <Books />;
-    }
-
-    return this.renderForm();
-  }
-
-  renderForm() {
     const authors = this.state.authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
     });
@@ -158,8 +146,13 @@ class BookFormContainer extends React.Component {
       return { value: genre.id, label: genre.name };
     });
 
+    // if (submitted && !this.state.newBook.author) {
+    //   return <ValidationFeedback />;
+    // }
+
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>
+        {error && <ErrorBanner />}
         <legend className="form-legend">New Book</legend>
         <Input
           type={"text"}
@@ -234,4 +227,4 @@ class BookFormContainer extends React.Component {
   }
 }
 
-export default BookFormContainer;
+export default withApiClient(BookFormContainer);
