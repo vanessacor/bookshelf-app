@@ -1,13 +1,22 @@
 import React from "react";
 
 function CheckBox(props) {
-  const { title, name, options, checked, onChange } = props;
+  const {
+    title,
+    name,
+    options,
+    checked,
+    onChange,
+    submitted,
+    feedbackMessage,
+  } = props;
   // let checked = name === value ? "true" : "";
   return (
     <div className="form-group">
       <label htmlFor={name} className="form-label">
         {title}
       </label>
+      {submitted && <p className="feedback">{feedbackMessage} </p>}
       <div className="form-checkbox">
         {options.map((option) => {
           return (

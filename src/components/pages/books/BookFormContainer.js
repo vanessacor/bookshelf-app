@@ -6,7 +6,6 @@ import Select from "../../blocks/form/Select";
 import RadioButton from "../../blocks/form/RadioButton";
 import Button from "../../blocks/Button";
 import CheckBox from "../../blocks/form/CheckBox";
-import ValidationFeedback from "../../blocks/form/ValidationFeedBack";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
 class BookFormContainer extends React.Component {
@@ -107,7 +106,6 @@ class BookFormContainer extends React.Component {
   handleFormSubmit(event) {
     event.preventDefault();
     let bookData = this.state.newBook;
-    // this.setState({ submitted: true });
 
     const { apiClient } = this.props;
 
@@ -117,7 +115,7 @@ class BookFormContainer extends React.Component {
           this.props.history.push(data.url);
         });
       } else {
-        this.setState({ error: true });
+        this.setState({ error: true, submitted: true });
       }
     });
   }
@@ -137,7 +135,8 @@ class BookFormContainer extends React.Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { error, hasErrors } = this.state;
+    console.log(hasErrors);
 
     const authors = this.state.authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
@@ -145,11 +144,6 @@ class BookFormContainer extends React.Component {
     const genres = this.state.genreOptions.map((genre) => {
       return { value: genre.id, label: genre.name };
     });
-
-    // if (submitted && !this.state.newBook.author) {
-    //   return <ValidationFeedback />;
-    // }
-
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>
         {error && <ErrorBanner />}
@@ -161,6 +155,8 @@ class BookFormContainer extends React.Component {
           value={this.state.newBook.title}
           placeholder={"Enter the Title"}
           onChange={this.handleInput}
+          submitted={this.state.submitted}
+          feedbackMessage={"Please Give a Title"}
         />
         <Select
           multiple={false}
@@ -170,6 +166,8 @@ class BookFormContainer extends React.Component {
           value={this.state.newBook.author}
           placeholder={"Select author"}
           onChange={this.handleInput}
+          submitted={this.state.submitted}
+          feedbackMessage={"Please select an Author"}
         />
 
         <CheckBox
@@ -178,6 +176,8 @@ class BookFormContainer extends React.Component {
           options={genres}
           checked={this.state.selectedGenres}
           onChange={this.handleCheckBox}
+          submitted={this.state.submitted}
+          feedbackMessage={"Please choose one genre"}
         />
 
         <div className="form-group">
@@ -208,6 +208,8 @@ class BookFormContainer extends React.Component {
           value={this.state.newBook.summary}
           placeholder={"Write a Summary"}
           onChange={this.handleInput}
+          submitted={this.state.submitted}
+          feedbackMessage={"no summary ?"}
         />
         <Input
           type={"text"}
@@ -216,6 +218,8 @@ class BookFormContainer extends React.Component {
           value={this.state.newBook.isbn}
           placeholder={"Book Isbn"}
           onChange={this.handleInput}
+          submitted={this.state.submitted}
+          feedbackMessage={"Please Insert book ISBN"}
         />
         <Button
           className={"submit"}
