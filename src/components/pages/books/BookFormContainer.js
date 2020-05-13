@@ -30,11 +30,6 @@ class BookFormContainer extends React.Component {
       selectedGenres: [],
       submitted: false,
     };
-    this.handleInput = this.handleInput.bind(this);
-    this.handleRadioBtn = this.handleRadioBtn.bind(this);
-    this.handleCheckBox = this.handleCheckBox.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
   }
 
   componentDidMount() {
@@ -50,9 +45,9 @@ class BookFormContainer extends React.Component {
     );
   }
 
-  handleInput(event) {
-    let value = event.target.value;
-    let name = event.target.name;
+  handleInput = (event) => {
+    let { value, name } = event.target;
+
     this.setState((prevState) => {
       return {
         newBook: {
@@ -61,11 +56,11 @@ class BookFormContainer extends React.Component {
         },
       };
     });
-  }
+  };
 
-  handleRadioBtn(event) {
-    let value = event.target.value;
-    let name = event.target.name;
+  handleRadioBtn = (event) => {
+    let { value, name } = event.target;
+
     this.setState((prevState) => {
       return {
         newBook: {
@@ -75,21 +70,20 @@ class BookFormContainer extends React.Component {
         selectedStatus: value,
       };
     });
-  }
+  };
 
-  handleCheckBox(event) {
+  handleCheckBox = (event) => {
     event.preventDefault();
-    const newSelection = event.target.value;
-    const name = event.target.name;
+    const { value, name } = event.target;
+
+    const { selectedGenres } = this.state;
 
     let newSelectionArray;
 
-    if (this.state.selectedGenres.indexOf(newSelection) > -1) {
-      newSelectionArray = this.state.selectedGenres.filter(
-        (s) => s !== newSelection
-      );
+    if (selectedGenres.indexOf(value) > -1) {
+      newSelectionArray = selectedGenres.filter((s) => s !== value);
     } else {
-      newSelectionArray = [...this.state.selectedGenres, newSelection];
+      newSelectionArray = [...selectedGenres, value];
     }
 
     this.setState((prevState) => {
@@ -101,38 +95,38 @@ class BookFormContainer extends React.Component {
         selectedGenres: [newSelectionArray],
       };
     });
-  }
+  };
 
-  handleFormSubmit(event) {
+  handleFormSubmit = (event) => {
     event.preventDefault();
-    let bookData = this.state.newBook;
+    const { newBook } = this.state;
 
-    const { apiClient } = this.props;
+    const { apiClient, history } = this.props;
 
-    apiClient.createBook(bookData).then((response) => {
+    apiClient.createBook(newBook).then((response) => {
       if (response.status === 201) {
         response.json().then((data) => {
-          this.props.history.push(data.url);
+          history.push(data.url);
         });
       } else {
         this.setState({ error: true, submitted: true });
       }
     });
-  }
+  };
 
-  handleClearForm(event) {
-    event.preventDefault();
-    this.setState({
-      newBook: {
-        title: "",
-        author: "",
-        genre: [],
-        status: "Read",
-        summary: "",
-        isbn: "",
-      },
-    });
-  }
+  // handleClearForm = (event) => {
+  //   event.preventDefault();
+  //   this.setState({
+  //     newBook: {
+  //       title: "",
+  //       author: "",
+  //       genre: [],
+  //       status: "Read",
+  //       summary: "",
+  //       isbn: "",
+  //     },
+  //   });
+  // };
 
   render() {
     const { error, hasErrors } = this.state;

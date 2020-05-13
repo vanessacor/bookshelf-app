@@ -3,26 +3,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import AuthorCard from "./AuthorCard";
-import AuthorFormContainer from "./AuthorFormContainer";
 import Loader from "../../blocks/Loader";
+import { withApiClient } from "../../../services/withApiClient";
 
 class Authors extends React.Component {
   state = {
     loading: true,
     authors: undefined,
-    showList: true,
-    showForm: false,
   };
 
   componentDidMount() {
-    fetch("http://localhost:8000/authors")
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          loading: false,
-          authors: data,
-        });
+    const { apiClient } = this.props;
+    apiClient.getAllAuthors().then((data) => {
+      this.setState({
+        loading: false,
+        authors: data,
       });
+    });
   }
 
   render() {
@@ -41,22 +38,20 @@ class Authors extends React.Component {
   }
 
   renderList() {
-    const { authors, showList, showForm } = this.state;
+    const { authors } = this.state;
     const cards = authors.map((item) => (
       <AuthorCard key={item.id} author={item} />
     ));
     return (
       <>
-        {showList && <div className="author-list">{cards}</div>}
-        {!showForm && (
-          <button className="button addAuthor">
-            <Link to={"/authors/create"}>Add Author</Link>
-          </button>
-        )}
-        {showForm && <AuthorFormContainer />}
+        <div className="author-list">{cards}</div>
+
+        <button className="button addAuthor">
+          <Link to={"/authors/create"}>Add Author</Link>
+        </button>
       </>
     );
   }
 }
 
-export default Authors;
+export default withApiClient(Authors);

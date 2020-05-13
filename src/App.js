@@ -5,6 +5,7 @@ import Header from "./components/header/Header";
 import Books from "./components/pages/books/Books";
 import BookFormContainer from "./components/pages/books/BookFormContainer";
 import BookDetails from "./components/pages/books/BookDetails";
+import BookDelete from "./components/pages/books/BookDelete";
 import Authors from "./components/pages/authors/Authors";
 import AuthorFormContainer from "./components/pages/authors/AuthorFormContainer";
 import AuthorDetails from "./components/pages/authors/AuthorDetails";
@@ -20,6 +21,7 @@ function App() {
             <Route exact path="/books" component={Books} />
 
             <Route path="/books/create" component={BookFormContainer} />
+            <Route path="/books/delete" component={BookDelete} />
             <Route path="/books/:id" component={BookDetails} />
 
             <Route exact path="/authors" component={Authors} />

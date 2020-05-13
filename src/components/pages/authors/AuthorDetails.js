@@ -1,24 +1,25 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+import { withApiClient } from "../../../services/withApiClient";
 import Moment from "react-moment";
 import Loader from "../../blocks/Loader";
-import { Link } from "react-router-dom";
 
 class AuthorDetails extends Component {
   state = {
     loading: true,
-    author: null,
+    author: undefined,
   };
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:8000/authors/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          author: data,
-          loading: false,
-        });
+    const { apiClient } = this.props;
+    apiClient.getAuthor(id).then((data) => {
+      this.setState({
+        loading: false,
+        author: data,
       });
+    });
   }
 
   render() {
@@ -32,14 +33,13 @@ class AuthorDetails extends Component {
     return (
       <div className="bookDetails">
         <h2>{name}</h2>
-        {this.renderCardDetails()}
+        {this.renderCardDetails(author)}
         {!!books.length ? this.renderBooks() : this.renderNoBooks()}
       </div>
     );
   }
 
-  renderCardDetails() {
-    const { author } = this.state;
+  renderCardDetails(author) {
     const { dateOfDeath } = author;
     return (
       <div className="author-card-details">
@@ -96,11 +96,11 @@ class AuthorDetails extends Component {
 
   renderBookItem(item) {
     return (
-      <li key={item._id}>
+      <li key={item.id}>
         <Link to={item.url}>{item.title}</Link>
       </li>
     );
   }
 }
 
-export default AuthorDetails;
+export default withApiClient(AuthorDetails);

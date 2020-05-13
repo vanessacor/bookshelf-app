@@ -1,7 +1,8 @@
 import React from "react";
-import Authors from "./Authors";
 import Input from "../../blocks/form/Input";
 import Button from "../../blocks/Button";
+import { withApiClient } from "../../../services/withApiClient";
+import ErrorBanner from "../../blocks/ErrorBanner";
 
 class AuthorFormContainer extends React.Component {
   constructor(props) {
@@ -13,16 +14,13 @@ class AuthorFormContainer extends React.Component {
         dateOfBirth: "",
         dateOfDeath: "",
       },
-      ShowForm: true,
+      submitted: false,
     };
-    this.handleInput = this.handleInput.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
   }
 
-  handleInput(event) {
-    let value = event.target.value;
-    let name = event.target.name;
+  handleInput = (event) => {
+    let { value, name } = event.target;
+
     this.setState((prevState) => {
       return {
         newAuthor: {
@@ -31,56 +29,44 @@ class AuthorFormContainer extends React.Component {
         },
       };
     });
-  }
+  };
 
-  handleFormSubmit(event) {
+  handleFormSubmit = (event) => {
     event.preventDefault();
-    let authorData = this.state.newAuthor;
+    const { newAuthor } = this.state;
+    const { apiClient, history } = this.props;
 
-    fetch("http://localhost:8000/authors", {
-      method: "POST",
-      body: JSON.stringify(authorData),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      response.json().then((data) => {
-        console.log("Successful" + data);
-      });
-      this.setState({
-        ShowForm: false,
-      });
+    apiClient.createAuthor(newAuthor).then((response) => {
+      if (response.status === 201) {
+        response.json().then((data) => {
+          console.log("data", data);
+          history.push(data.url);
+        });
+      } else {
+        this.setState({ error: true, submitted: true });
+      }
     });
+  };
 
-    this.render();
-  }
-
-  handleClearForm(event) {
-    event.preventDefault();
-    this.setState({
-      newBook: {
-        firstName: "",
-        familyName: "",
-        dateOfBirth: "",
-        dateOfDeath: "",
-      },
-    });
-  }
+  // handleClearForm = (event) => {
+  //   event.preventDefault();
+  //   this.setState({
+  //     newBook: {
+  //       firstName: "",
+  //       familyName: "",
+  //       dateOfBirth: "",
+  //       dateOfDeath: "",
+  //     },
+  //   });
+  // }
 
   render() {
-    const { ShowForm } = this.state;
+    const { error, hasErrors } = this.state;
+    console.log(hasErrors);
 
-    if (!ShowForm) {
-      return <Authors />;
-    }
-
-    return this.renderForm();
-  }
-
-  renderForm() {
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>
+        {error && <ErrorBanner />}
         <legend className="form-legend">New Author</legend>
         <Input
           type={"text"}
@@ -89,6 +75,8 @@ class AuthorFormContainer extends React.Component {
           value={this.state.newAuthor.firstName}
           placeholder={"Enter Authors First name"}
           onChange={this.handleInput}
+          submitted={this.state.submitted}
+          feedbackMessage={"The author must have a name"}
         />
 
         <Input
@@ -98,6 +86,8 @@ class AuthorFormContainer extends React.Component {
           value={this.state.newAuthor.familyName}
           placeholder={"Enter Authors Family name"}
           onChange={this.handleInput}
+          submitted={this.state.submitted}
+          feedbackMessage={"Please fill the family name"}
         />
 
         <Input
@@ -107,6 +97,8 @@ class AuthorFormContainer extends React.Component {
           value={this.state.newAuthor.dateOfBirth}
           placeholder={"Author Date of Birth"}
           onChange={this.handleInput}
+          submitted={this.state.submitted}
+          feedbackMessage={"Do you know when the author was born?"}
         />
 
         <Input
@@ -128,4 +120,4 @@ class AuthorFormContainer extends React.Component {
   }
 }
 
-export default AuthorFormContainer;
+export default withApiClient(AuthorFormContainer);

@@ -14,7 +14,9 @@ function BookCard(props) {
         {author && (
           <>
             <h3>Author:</h3>
-            <p>{author.name}</p>
+            <p>
+              <Link to={`${author.url}`}> {author.name} </Link>
+            </p>
           </>
         )}
         <h3>Genre:</h3>
