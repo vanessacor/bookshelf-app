@@ -45,6 +45,31 @@ class BookFormContainer extends React.Component {
     );
   }
 
+  isTitleValid() {
+    const { newBook } = this.state;
+    if (!newBook.title) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  isAuthorValid() {
+    const { newBook } = this.state;
+    if (!newBook.author.name) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  isValid() {
+    if (!this.isTitleValid() || !this.isAuthorValid()) {
+      return false;
+    }
+    return true;
+  }
+
   handleInput = (event) => {
     let { value, name } = event.target;
 
@@ -99,9 +124,17 @@ class BookFormContainer extends React.Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+
+    this.setState({ validationError: false, unexpectedError: false });
+
     const { newBook } = this.state;
 
     const { apiClient, history } = this.props;
+
+    if (!this.isValid()) {
+      this.setState({ validationError: true, submitted: true });
+      return;
+    }
 
     apiClient.createBook(newBook).then((response) => {
       if (response.status === 201) {
@@ -109,7 +142,8 @@ class BookFormContainer extends React.Component {
           history.push(data.url);
         });
       } else {
-        this.setState({ error: true, submitted: true });
+        // TODO if state.unexpected show "unexpected error"
+        this.setState({ unexpectedError: true });
       }
     });
   };
@@ -129,9 +163,15 @@ class BookFormContainer extends React.Component {
   // };
 
   render() {
-    const { error, hasErrors } = this.state;
+    const {
+      validationError,
+      unexpectedError,
+      hasErrors,
+      submitted,
+    } = this.state;
     console.log(hasErrors);
 
+    const { title, author, summary, isbn } = this.state.newBook;
     const authors = this.state.authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
     });
@@ -140,29 +180,35 @@ class BookFormContainer extends React.Component {
     });
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>
-        {error && <ErrorBanner />}
+        {unexpectedError && <ErrorBanner />}
+        {validationError && <ErrorBanner>Please review the errors</ErrorBanner>}
         <legend className="form-legend">New Book</legend>
         <Input
           type={"text"}
           title={"Book Title"}
           name={"title"}
-          value={this.state.newBook.title}
+          value={title}
           placeholder={"Enter the Title"}
           onChange={this.handleInput}
-          submitted={this.state.submitted}
-          feedbackMessage={"Please Give a Title"}
-        />
+        >
+          {submitted && !this.isTitleValid() && (
+            <p className="feedback">Please Give a Title</p>
+          )}
+        </Input>
+
         <Select
           multiple={false}
           title={"Author"}
           name={"author"}
           options={authors}
-          value={this.state.newBook.author}
+          value={author}
           placeholder={"Select author"}
           onChange={this.handleInput}
-          submitted={this.state.submitted}
-          feedbackMessage={"Please select an Author"}
-        />
+        >
+          {submitted && !this.isAuthorValid() && (
+            <p className="feedback">Please select an Author</p>
+          )}
+        </Select>
 
         <CheckBox
           title={"Genre"}
@@ -181,7 +227,7 @@ class BookFormContainer extends React.Component {
           <RadioButton
             name={"status"}
             id={"Read"}
-            isSelected={this.state.status === "Read"}
+            isSelected={this.state.selectedStatus === "Read"}
             value={"Read"}
             label={"Read"}
             onChange={this.handleRadioBtn}
@@ -189,8 +235,8 @@ class BookFormContainer extends React.Component {
           <RadioButton
             name={"status"}
             id={"Unread"}
-            isSelected={this.state.status === "Unread"}
-            value={"Read"}
+            isSelected={this.state.selectedStatus === "Unread"}
+            value={"Unread"}
             label={"Unread"}
             onChange={this.handleRadioBtn}
           />
@@ -199,7 +245,7 @@ class BookFormContainer extends React.Component {
           type={"text"}
           title={"Summary"}
           name={"summary"}
-          value={this.state.newBook.summary}
+          value={summary}
           placeholder={"Write a Summary"}
           onChange={this.handleInput}
           submitted={this.state.submitted}
@@ -209,7 +255,7 @@ class BookFormContainer extends React.Component {
           type={"text"}
           title={"ISBN"}
           name={"isbn"}
-          value={this.state.newBook.isbn}
+          value={isbn}
           placeholder={"Book Isbn"}
           onChange={this.handleInput}
           submitted={this.state.submitted}

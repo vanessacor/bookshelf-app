@@ -10,6 +10,9 @@ import Authors from "./components/pages/authors/Authors";
 import AuthorFormContainer from "./components/pages/authors/AuthorFormContainer";
 import AuthorDetails from "./components/pages/authors/AuthorDetails";
 import Genres from "./components/pages/genres/Genres";
+import GenreFormContainer from "./components/pages/genres/GenreFormContainer";
+import GenreDetails from "./components/pages/genres/genreDetails";
+import AuthorDelete from "./components/pages/authors/AuthorDelete";
 
 function App() {
   return (
@@ -26,9 +29,12 @@ function App() {
 
             <Route exact path="/authors" component={Authors} />
             <Route path="/authors/create" component={AuthorFormContainer} />
+            <Route path="/authors/delete" component={AuthorDelete} />
             <Route path="/authors/:id" component={AuthorDetails} />
 
-            <Route path="/genres" component={Genres} />
+            <Route exact path="/genres" component={Genres} />
+            <Route path="/genres/create" component={GenreFormContainer} />
+            <Route path="/genres/:id" component={GenreDetails} />
           </Switch>
         </main>
       </Router>

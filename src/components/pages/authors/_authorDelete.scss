@@ -1,0 +1,45 @@
+.delete-author {
+  padding: 10px 10px 5px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  background-color: $base-color-dark;
+  box-shadow: 1px 1px 5px $accent-color-light;
+  h3 {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  span {
+    font-weight: lighter;
+    text-transform: lowercase;
+    font-size: 16px;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-weight: lighter;
+  }
+
+  &-warning {
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-style: oblique;
+    }
+  }
+}
+
+.delete-author-btn {
+  margin-right: 10px;
+}
+
+.delete-author-cancel-btn {
+  background-color: $accent-color-dark;
+  color: $base-color-light;
+}

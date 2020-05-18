@@ -9,13 +9,13 @@ function Select(props) {
     placeholder,
     options, // [value: , label: }]
     onChange,
-    submitted,
-    feedbackMessage,
+    children,
   } = props;
   return (
     <div className="form-group">
       <label htmlFor={name}> {title} </label>
-      {submitted && <p className="feedback">{feedbackMessage} </p>}
+      {children}
+
       <select
         multiple={multiple}
         name={name}

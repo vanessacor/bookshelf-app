@@ -1,0 +1,35 @@
+//
+
+.genre-list {
+  margin-bottom: 30px;
+  h2 {
+    margin-bottom: 30px;
+    color: $highlight-color;
+  }
+}
+
+.genre-item {
+  margin-bottom: 15px;
+  padding-left: 10px;
+
+  a {
+    color: $accent-color-dark;
+    text-decoration: none;
+
+    &:hover {
+      color: $font-color;
+    }
+  }
+}
+
+.addGenre {
+  margin-bottom: 15px;
+  a {
+    text-decoration: none;
+    color: $base-color-light;
+
+    &:hover {
+      color: $font-color;
+    }
+  }
+}

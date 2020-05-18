@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { withApiClient } from "../../../services/withApiClient";
 import Moment from "react-moment";
 import Loader from "../../blocks/Loader";
+import Button from "../../blocks/Button";
 
 class AuthorDetails extends Component {
   state = {
@@ -22,6 +23,17 @@ class AuthorDetails extends Component {
     });
   }
 
+  handleDelete = (event) => {
+    event.preventDefault();
+    console.log("I was clicked");
+    const { author } = this.state;
+    const { history } = this.props;
+    history.push({
+      pathname: "./delete",
+      state: author,
+    });
+  };
+
   render() {
     const { loading, author } = this.state;
 
@@ -31,10 +43,15 @@ class AuthorDetails extends Component {
 
     const { name, books } = author;
     return (
-      <div className="bookDetails">
+      <div className="authorDetails">
         <h2>{name}</h2>
         {this.renderCardDetails(author)}
         {!!books.length ? this.renderBooks() : this.renderNoBooks()}
+        <Button
+          className={"delete"}
+          onClick={this.handleDelete}
+          title={"Delete Author"}
+        />
       </div>
     );
   }

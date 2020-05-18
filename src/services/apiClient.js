@@ -54,4 +54,27 @@ export class ApiClient {
       },
     });
   }
+
+  deleteAuthor(id) {
+    return fetch(`${this.baseUrl}/authors/${id}`, {
+      method: "delete",
+    });
+  }
+
+  createGenre(genre) {
+    return fetch(`${this.baseUrl}/genres`, {
+      method: "POST",
+      body: JSON.stringify(genre),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  getGenre(id) {
+    return fetch(`${this.baseUrl}/genres/${id}`).then((response) =>
+      response.json()
+    );
+  }
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
 function ErrorBanner(props) {
-  let { message } = props;
-  if (!message) {
-    message = "Unexpected error. Please try again";
+  let { children } = props;
+  if (!children) {
+    children = "Unexpected error. Please try again";
   }
-  return <div className="error">{message}</div>;
+  return <div className="error">{children}</div>;
 }
 export default ErrorBanner;

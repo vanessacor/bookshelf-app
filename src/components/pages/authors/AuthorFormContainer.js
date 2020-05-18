@@ -18,6 +18,40 @@ class AuthorFormContainer extends React.Component {
     };
   }
 
+  isFirstNameValid() {
+    const { newAuthor } = this.state;
+    if (!newAuthor.firstName) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  isFamilyNameValid() {
+    const { newAuthor } = this.state;
+    if (!newAuthor.familyName) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  isDOBValid() {
+    const { newAuthor } = this.state;
+    if (!newAuthor.dateOfBirth) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  isValid() {
+    if (!this.isFirstNameValid || !this.isFamilyNameValid || !this.isDOBValid) {
+      return false;
+    }
+    return true;
+  }
+
   handleInput = (event) => {
     let { value, name } = event.target;
 
@@ -33,13 +67,21 @@ class AuthorFormContainer extends React.Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+
+    this.setState({ validationError: false, unexpectedError: false });
+
     const { newAuthor } = this.state;
+
     const { apiClient, history } = this.props;
+
+    if (!this.isValid()) {
+      this.setState({ validationError: true, submitted: true });
+      return;
+    }
 
     apiClient.createAuthor(newAuthor).then((response) => {
       if (response.status === 201) {
         response.json().then((data) => {
-          console.log("data", data);
           history.push(data.url);
         });
       } else {
@@ -61,51 +103,69 @@ class AuthorFormContainer extends React.Component {
   // }
 
   render() {
-    const { error, hasErrors } = this.state;
+    const {
+      newAuthor,
+      submitted,
+      hasErrors,
+      validationError,
+      unexpectedError,
+    } = this.state;
+    const { firstName, familyName, dateOfBirth, dateOfDeath } = newAuthor;
     console.log(hasErrors);
 
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>
-        {error && <ErrorBanner />}
+        {unexpectedError && <ErrorBanner />}
+        {validationError && <ErrorBanner>Please review the errors</ErrorBanner>}
         <legend className="form-legend">New Author</legend>
         <Input
           type={"text"}
           title={"Author First Name"}
           name={"firstName"}
-          value={this.state.newAuthor.firstName}
+          value={firstName}
           placeholder={"Enter Authors First name"}
           onChange={this.handleInput}
-          submitted={this.state.submitted}
+          submitted={submitted}
           feedbackMessage={"The author must have a name"}
-        />
+        >
+          {submitted && !this.isFirstNameValid() && (
+            <p className="feedback">Please Give a Name</p>
+          )}
+        </Input>
 
         <Input
           type={"text"}
           title={"Author Family Name"}
           name={"familyName"}
-          value={this.state.newAuthor.familyName}
+          value={familyName}
           placeholder={"Enter Authors Family name"}
           onChange={this.handleInput}
-          submitted={this.state.submitted}
+          submitted={submitted}
           feedbackMessage={"Please fill the family name"}
-        />
+        >
+          {submitted && !this.isFamilyNameValid() && (
+            <p className="feedback">Please Give a Family Name</p>
+          )}
+        </Input>
 
         <Input
           type={"date"}
-          title={"dateOfBirth"}
+          title={"Date Of Birth"}
           name={"dateOfBirth"}
-          value={this.state.newAuthor.dateOfBirth}
+          value={dateOfBirth}
           placeholder={"Author Date of Birth"}
           onChange={this.handleInput}
-          submitted={this.state.submitted}
-          feedbackMessage={"Do you know when the author was born?"}
-        />
+        >
+          {submitted && !this.isDOBValid() && (
+            <p className="feedback">Please insert a Date of Birth</p>
+          )}
+        </Input>
 
         <Input
           type={"date"}
           title={"dateOfDeath"}
           name={"dateOfDeath"}
-          value={this.state.newAuthor.dateOfDeath}
+          value={dateOfDeath}
           placeholder={"Author Date of Death"}
           onChange={this.handleInput}
         />
