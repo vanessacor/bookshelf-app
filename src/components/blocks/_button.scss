@@ -11,4 +11,13 @@
     box-shadow: none;
     color: $font-color;
   }
+
+  &-submit {
+    margin-bottom: 20px;
+  }
+
+  &-clear {
+    margin-left: 20px;
+    background-color: $accent-color-dark;
+  }
 }

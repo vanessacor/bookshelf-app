@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 
 import { withApiClient } from "../../../services/withApiClient";
+
 import Input from "../../blocks/form/Input";
 import Select from "../../blocks/form/Select";
 import RadioButton from "../../blocks/form/RadioButton";
@@ -8,19 +9,16 @@ import Button from "../../blocks/Button";
 import CheckBox from "../../blocks/form/CheckBox";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
-class BookFormContainer extends React.Component {
+class BookFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: undefined,
       newBook: {
         title: "",
-        author: {
-          name: "",
-          id: "",
-        },
+        author: "",
         genre: "",
-        status: "",
+        status: "Read",
         summary: "",
         isbn: "",
       },
@@ -45,18 +43,9 @@ class BookFormContainer extends React.Component {
     );
   }
 
-  isTitleValid() {
+  isInputValid(input) {
     const { newBook } = this.state;
-    if (!newBook.title) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  isAuthorValid() {
-    const { newBook } = this.state;
-    if (!newBook.author.name) {
+    if (!newBook[input]) {
       return false;
     } else {
       return true;
@@ -64,7 +53,7 @@ class BookFormContainer extends React.Component {
   }
 
   isValid() {
-    if (!this.isTitleValid() || !this.isAuthorValid()) {
+    if (!this.isInputValid("title") || !this.isInputValid("author")) {
       return false;
     }
     return true;
@@ -148,34 +137,35 @@ class BookFormContainer extends React.Component {
     });
   };
 
-  // handleClearForm = (event) => {
-  //   event.preventDefault();
-  //   this.setState({
-  //     newBook: {
-  //       title: "",
-  //       author: "",
-  //       genre: [],
-  //       status: "Read",
-  //       summary: "",
-  //       isbn: "",
-  //     },
-  //   });
-  // };
+  handleClearForm = (event) => {
+    event.preventDefault();
+    this.setState({
+      newBook: {
+        title: "",
+        author: "",
+        genre: [],
+        status: "Read",
+        summary: "",
+        isbn: "",
+      },
+    });
+  };
 
   render() {
     const {
+      newBook,
+      authorsOptions,
+      genreOptions,
       validationError,
       unexpectedError,
-      hasErrors,
       submitted,
     } = this.state;
-    console.log(hasErrors);
 
-    const { title, author, summary, isbn } = this.state.newBook;
-    const authors = this.state.authorsOptions.map((author) => {
+    const { title, author, summary, isbn } = newBook;
+    const authors = authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
     });
-    const genres = this.state.genreOptions.map((genre) => {
+    const genres = genreOptions.map((genre) => {
       return { value: genre.id, label: genre.name };
     });
     return (
@@ -191,7 +181,7 @@ class BookFormContainer extends React.Component {
           placeholder={"Enter the Title"}
           onChange={this.handleInput}
         >
-          {submitted && !this.isTitleValid() && (
+          {submitted && !this.isInputValid("title") && (
             <p className="feedback">Please Give a Title</p>
           )}
         </Input>
@@ -205,7 +195,7 @@ class BookFormContainer extends React.Component {
           placeholder={"Select author"}
           onChange={this.handleInput}
         >
-          {submitted && !this.isAuthorValid() && (
+          {submitted && !this.isInputValid("author") && (
             <p className="feedback">Please select an Author</p>
           )}
         </Select>
@@ -262,9 +252,14 @@ class BookFormContainer extends React.Component {
           feedbackMessage={"Please Insert book ISBN"}
         />
         <Button
-          className={"submit"}
+          className={"button-submit"}
           onClick={this.handleFormSubmit}
           title={"Add"}
+        />
+        <Button
+          className={"button-clear"}
+          onClick={this.handleClearForm}
+          title={"Clear"}
         />
       </form>
     );

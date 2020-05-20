@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { withApiClient } from "../../../services/withApiClient";
+
 import BookCard from "./BookCard";
 import Loader from "../../blocks/Loader";
-import { withApiClient } from "../../../services/withApiClient";
 
 class Books extends React.Component {
   state = {
