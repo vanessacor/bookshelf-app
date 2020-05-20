@@ -43,7 +43,7 @@ class BookDetail extends Component {
     const { title, author, summary, genre, isbn, status } = book;
     return (
       <div>
-        <div className="bookDetails">
+        <div className="book-details">
           <h2>{title}</h2>
           {author && (
             <>

@@ -18,27 +18,9 @@ class AuthorFormContainer extends React.Component {
     };
   }
 
-  isFirstNameValid() {
+  isInputValid(input) {
     const { newAuthor } = this.state;
-    if (!newAuthor.firstName) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  isFamilyNameValid() {
-    const { newAuthor } = this.state;
-    if (!newAuthor.familyName) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  isDOBValid() {
-    const { newAuthor } = this.state;
-    if (!newAuthor.dateOfBirth) {
+    if (!newAuthor[input]) {
       return false;
     } else {
       return true;
@@ -46,7 +28,11 @@ class AuthorFormContainer extends React.Component {
   }
 
   isValid() {
-    if (!this.isFirstNameValid || !this.isFamilyNameValid || !this.isDOBValid) {
+    if (
+      !this.isInputValid("firstName") ||
+      !this.isInputValid("familyName") ||
+      !this.isInputValid("dateOfBirth")
+    ) {
       return false;
     }
     return true;
@@ -90,17 +76,17 @@ class AuthorFormContainer extends React.Component {
     });
   };
 
-  // handleClearForm = (event) => {
-  //   event.preventDefault();
-  //   this.setState({
-  //     newBook: {
-  //       firstName: "",
-  //       familyName: "",
-  //       dateOfBirth: "",
-  //       dateOfDeath: "",
-  //     },
-  //   });
-  // }
+  handleClearForm = (event) => {
+    event.preventDefault();
+    this.setState({
+      newAuthor: {
+        firstName: "",
+        familyName: "",
+        dateOfBirth: "",
+        dateOfDeath: "",
+      },
+    });
+  };
 
   render() {
     const {
@@ -128,7 +114,7 @@ class AuthorFormContainer extends React.Component {
           submitted={submitted}
           feedbackMessage={"The author must have a name"}
         >
-          {submitted && !this.isFirstNameValid() && (
+          {submitted && !this.isInputValid("firstName") && (
             <p className="feedback">Please Give a Name</p>
           )}
         </Input>
@@ -143,7 +129,7 @@ class AuthorFormContainer extends React.Component {
           submitted={submitted}
           feedbackMessage={"Please fill the family name"}
         >
-          {submitted && !this.isFamilyNameValid() && (
+          {submitted && !this.isInputValid("familyName") && (
             <p className="feedback">Please Give a Family Name</p>
           )}
         </Input>
@@ -156,7 +142,7 @@ class AuthorFormContainer extends React.Component {
           placeholder={"Author Date of Birth"}
           onChange={this.handleInput}
         >
-          {submitted && !this.isDOBValid() && (
+          {submitted && !this.isInputValid("dateOfBirth") && (
             <p className="feedback">Please insert a Date of Birth</p>
           )}
         </Input>
@@ -174,6 +160,12 @@ class AuthorFormContainer extends React.Component {
           className={"submit"}
           onClick={this.handleFormSubmit}
           title={"Add"}
+        />
+
+        <Button
+          className={"button-clear"}
+          onClick={this.handleClearForm}
+          title={"Clear"}
         />
       </form>
     );

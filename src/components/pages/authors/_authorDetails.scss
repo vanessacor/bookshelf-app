@@ -1,4 +1,4 @@
-.book-details {
+.author-details {
   padding: 10px 10px 5px;
   margin-bottom: 30px;
   border-radius: 5px;
@@ -16,5 +16,9 @@
 
   h3 {
     color: $accent-color-dark;
+  }
+
+  div:last-of-type {
+    margin-bottom: 20px;
   }
 }

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 
 import { withApiClient } from "../../../services/withApiClient";
-import Moment from "react-moment";
 import Loader from "../../blocks/Loader";
 import Button from "../../blocks/Button";
 
@@ -43,7 +43,7 @@ class AuthorDetails extends Component {
 
     const { name, books } = author;
     return (
-      <div className="authorDetails">
+      <div className="author-details">
         <h2>{name}</h2>
         {this.renderCardDetails(author)}
         {!!books.length ? this.renderBooks() : this.renderNoBooks()}
@@ -58,11 +58,7 @@ class AuthorDetails extends Component {
 
   renderCardDetails(author) {
     const { dateOfDeath } = author;
-    return (
-      <div className="author-card-details">
-        {dateOfDeath ? this.renderLifeSpan() : this.renderAge()}
-      </div>
-    );
+    return <div>{dateOfDeath ? this.renderLifeSpan() : this.renderAge()}</div>;
   }
 
   renderLifeSpan() {

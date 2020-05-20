@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,7 @@ import AuthorCard from "./AuthorCard";
 import Loader from "../../blocks/Loader";
 import { withApiClient } from "../../../services/withApiClient";
 
-class Authors extends React.Component {
+class Authors extends Component {
   state = {
     loading: true,
     authors: undefined,
