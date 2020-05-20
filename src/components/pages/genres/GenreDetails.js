@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { withApiClient } from "../../../services/withApiClient";
 import Loader from "../../blocks/Loader";
+import Button from "../../blocks/Button";
 
 class GenreDetails extends Component {
   state = {
@@ -21,6 +22,16 @@ class GenreDetails extends Component {
     });
   }
 
+  handleDelete = (event) => {
+    event.preventDefault();
+    const { genre } = this.state;
+    const { history } = this.props;
+    history.push({
+      pathname: "./delete",
+      state: genre,
+    });
+  };
+
   render() {
     const { loading, genre } = this.state;
 
@@ -30,23 +41,24 @@ class GenreDetails extends Component {
 
     const { name, books } = genre;
     return (
-      <div className="bookDetails">
+      <div className="details genre-details">
         <h2>{name}</h2>
-        {this.renderGenreDetails(genre)}
+
         {!!books.length ? this.renderBooks() : this.renderNoBooks()}
+        <Button
+          className={"delete"}
+          onClick={this.handleDelete}
+          title={"Delete Genre"}
+        />
       </div>
     );
-  }
-
-  renderGenreDetails(genre) {
-    return <div className="author-card-details">{genre.name}</div>;
   }
 
   renderNoBooks() {
     return (
       <div>
         <h3>Books:</h3>
-        <p>There is no book within this genre</p>
+        <p>There is no books within this Genre</p>
       </div>
     );
   }

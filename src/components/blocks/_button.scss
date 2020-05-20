@@ -20,4 +20,13 @@
     margin-left: 20px;
     background-color: $accent-color-dark;
   }
+
+  &-delete {
+    margin-right: 10px;
+  }
+
+  &-delete-cancel {
+    background-color: $accent-color-dark;
+    color: $base-color-light;
+  }
 }

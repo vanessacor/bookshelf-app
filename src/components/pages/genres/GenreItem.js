@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function GenreItem(props) {
   const item = props.genre;
   const { url, name } = item;
-  console.log(item);
+
   return (
     <section className="genre-item">
       <h3>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import { withApiClient } from "../../../services/withApiClient";
 import Loader from "../../blocks/Loader";
 import GenreItem from "./GenreItem";
@@ -17,7 +18,6 @@ class Genres extends Component {
         loading: false,
         genres: data,
       });
-      console.log(this.state.genres);
     });
   }
 

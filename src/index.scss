@@ -5,6 +5,8 @@
 @import "app";
 @import "main";
 @import "styles/card";
+@import "styles/details";
+@import "styles/delete";
 
 @import "./components/blocks/form/form";
 @import "./components/blocks/form/checkBox";
@@ -28,3 +30,5 @@
 @import "./components/pages/authors/authorDelete";
 
 @import "./components/pages/genres/genres";
+@import "./components/pages/genres/genreDetails";
+@import "./components/pages/genres/genreDelete";

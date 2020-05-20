@@ -25,7 +25,6 @@ class AuthorDetails extends Component {
 
   handleDelete = (event) => {
     event.preventDefault();
-    console.log("I was clicked");
     const { author } = this.state;
     const { history } = this.props;
     history.push({
@@ -43,7 +42,7 @@ class AuthorDetails extends Component {
 
     const { name, books } = author;
     return (
-      <div className="author-details">
+      <div className="details details-author">
         <h2>{name}</h2>
         {this.renderCardDetails(author)}
         {!!books.length ? this.renderBooks() : this.renderNoBooks()}

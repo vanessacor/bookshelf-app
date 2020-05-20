@@ -4,44 +4,44 @@ import { withApiClient } from "../../../services/withApiClient";
 
 import Button from "../../blocks/Button";
 
-class AuthorDelete extends Component {
+class GenreDelete extends Component {
   constructor(props) {
     super(props);
-    this.author = this.props.location.state;
+    this.genre = this.props.location.state;
   }
 
-  deleteAuthor = () => {
-    const { id, books } = this.author;
-    console.log("I was clicked", this.author);
+  deleteGenre = () => {
+    const { id, books } = this.genre;
+    console.log("I was clicked", this.genre);
     const { apiClient, history } = this.props;
-    if (!this.author) {
+    if (!this.genre) {
       history.push("./");
     }
     if (books.length) {
       return;
     } else
-      apiClient.deleteAuthor(id).then(() => {
-        console.log("author deleted");
+      apiClient.deleteGenre(id).then(() => {
+        console.log("genre deleted");
         history.push("./");
       });
   };
 
-  returnToAuthor = () => {
-    const { id } = this.author;
+  returnToGenres = () => {
     const { history } = this.props;
-    history.push(`./${id}`);
+    history.push("./");
   };
 
   render() {
-    return <div className=" delete delete-author">{this.renderContents()}</div>;
+    console.log("this genre", this.genre);
+    return <div className="delete delete-genre">{this.renderContents()}</div>;
   }
 
   renderBooks = () => {
-    const { name, books } = this.author;
+    const { name, books } = this.genre;
     return (
-      <div className="delete-warning">
+      <div className="delete delete-warning">
         <h2>
-          {name} <span> wrote the following books:</span>
+          {name} <span> is clasiffied the following books:</span>
         </h2>
 
         <p>Please delete these books first</p>
@@ -59,9 +59,9 @@ class AuthorDelete extends Component {
   };
 
   renderContents() {
-    const { name, books } = this.author;
+    const { name, books } = this.genre;
     console.log(books);
-    if (!this.author) {
+    if (!this.genre) {
       this.props.history.push("./");
     }
     if (books.length >= 1) {
@@ -71,15 +71,15 @@ class AuthorDelete extends Component {
         <div>
           <h3>{name}</h3>
 
-          <h2>Are you sure you want to delete this author ?</h2>
+          <h2>Are you sure you want to delete this genre ?</h2>
           <Button
             className={"button-delete"}
-            onClick={this.deleteAuthor}
+            onClick={this.deleteGenre}
             title={"Yes"}
           />
           <Button
             className={"button-delete-cancel"}
-            onClick={this.returnToAuthor}
+            onClick={this.returnToGenres}
             title={"No"}
           />
         </div>
@@ -87,4 +87,4 @@ class AuthorDelete extends Component {
     }
   }
 }
-export default withApiClient(AuthorDelete);
+export default withApiClient(GenreDelete);

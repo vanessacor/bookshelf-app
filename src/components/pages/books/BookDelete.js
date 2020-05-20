@@ -36,19 +36,19 @@ class BookDelete extends React.Component {
     } else {
       const { title, author } = this.book;
       return (
-        <div className="delete-book">
+        <div className="delete delete-book">
           <h3>
             {title} <span> by {author.name}</span>
           </h3>
 
           <h2>Are you sure you want to delete this book ?</h2>
           <Button
-            className={"delete-book-btn"}
+            className={"button-delete"}
             onClick={this.deleteBook}
             title={"Yes"}
           />
           <Button
-            className={"delete-book-cancel-btn"}
+            className={"button-delete-cancel"}
             onClick={this.returnToBook}
             title={"No"}
           />

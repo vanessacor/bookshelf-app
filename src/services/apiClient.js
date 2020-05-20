@@ -77,4 +77,10 @@ export class ApiClient {
       response.json()
     );
   }
+
+  deleteGenre(id) {
+    return fetch(`${this.baseUrl}/genres/${id}`, {
+      method: "delete",
+    });
+  }
 }
