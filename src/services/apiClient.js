@@ -44,6 +44,17 @@ export class ApiClient {
     });
   }
 
+  updateBook(book, id) {
+    return fetch(`${this.baseUrl}/books/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(book),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   createAuthor(author) {
     return fetch(`${this.baseUrl}/authors`, {
       method: "POST",
