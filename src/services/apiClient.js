@@ -44,8 +44,8 @@ export class ApiClient {
     });
   }
 
-  updateBook(book, id) {
-    return fetch(`${this.baseUrl}/books/${id}`, {
+  updateBook(book) {
+    return fetch(`${this.baseUrl}/books/${book.id}`, {
       method: "PUT",
       body: JSON.stringify(book),
       headers: {

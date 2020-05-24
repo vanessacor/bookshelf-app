@@ -9,15 +9,15 @@ import Button from "../../blocks/Button";
 import CheckBox from "../../blocks/form/CheckBox";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
-class BookFormContainer extends Component {
+class BookCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: undefined,
-      newBook: {
+      book: {
         title: "",
         author: "",
-        genre: "",
+        genre: [],
         status: "Read",
         summary: "",
         isbn: "",
@@ -25,7 +25,6 @@ class BookFormContainer extends Component {
       authorsOptions: [],
       genreOptions: [],
       selectedStatus: "Read",
-      selectedGenres: [],
       submitted: false,
     };
   }
@@ -44,8 +43,8 @@ class BookFormContainer extends Component {
   }
 
   isInputValid(input) {
-    const { newBook } = this.state;
-    if (!newBook[input]) {
+    const { book } = this.state;
+    if (!book[input]) {
       return false;
     } else {
       return true;
@@ -64,8 +63,8 @@ class BookFormContainer extends Component {
 
     this.setState((prevState) => {
       return {
-        newBook: {
-          ...prevState.newBook,
+        book: {
+          ...prevState.book,
           [name]: value,
         },
       };
@@ -77,8 +76,8 @@ class BookFormContainer extends Component {
 
     this.setState((prevState) => {
       return {
-        newBook: {
-          ...prevState.newBook,
+        book: {
+          ...prevState.book,
           [name]: value,
         },
         selectedStatus: value,
@@ -87,26 +86,23 @@ class BookFormContainer extends Component {
   };
 
   handleCheckBox = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const { value, name } = event.target;
 
-    const { selectedGenres } = this.state;
+    let { genre } = this.state.book;
 
-    let newSelectionArray;
-
-    if (selectedGenres.indexOf(value) > -1) {
-      newSelectionArray = selectedGenres.filter((s) => s !== value);
+    if (genre.indexOf(value) > -1) {
+      genre = genre.filter((item) => item !== value);
     } else {
-      newSelectionArray = [...selectedGenres, value];
+      genre = [...genre, value];
     }
 
     this.setState((prevState) => {
       return {
-        newBook: {
-          ...prevState.newBook,
-          [name]: newSelectionArray,
+        book: {
+          ...prevState.book,
+          [name]: value,
         },
-        selectedGenres: [newSelectionArray],
       };
     });
   };
@@ -116,7 +112,7 @@ class BookFormContainer extends Component {
 
     this.setState({ validationError: false, unexpectedError: false });
 
-    const { newBook } = this.state;
+    const { book } = this.state;
 
     const { apiClient, history } = this.props;
 
@@ -125,7 +121,7 @@ class BookFormContainer extends Component {
       return;
     }
 
-    apiClient.createBook(newBook).then((response) => {
+    apiClient.createBook(book).then((response) => {
       if (response.status === 201) {
         response.json().then((data) => {
           history.push(data.url);
@@ -140,7 +136,7 @@ class BookFormContainer extends Component {
   handleClearForm = (event) => {
     event.preventDefault();
     this.setState({
-      newBook: {
+      book: {
         title: "",
         author: "",
         genre: [],
@@ -153,7 +149,7 @@ class BookFormContainer extends Component {
 
   render() {
     const {
-      newBook,
+      book,
       authorsOptions,
       genreOptions,
       validationError,
@@ -161,7 +157,7 @@ class BookFormContainer extends Component {
       submitted,
     } = this.state;
 
-    const { title, author, summary, isbn } = newBook;
+    const { title, author, summary, isbn } = book;
     const authors = authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
     });
@@ -204,7 +200,6 @@ class BookFormContainer extends Component {
           title={"Genre"}
           name={"genre"}
           options={genres}
-          checked={this.state.selectedGenres}
           onChange={this.handleCheckBox}
           submitted={this.state.submitted}
           feedbackMessage={"Please choose one genre"}
@@ -266,4 +261,4 @@ class BookFormContainer extends Component {
   }
 }
 
-export default withApiClient(BookFormContainer);
+export default withApiClient(BookCreate);

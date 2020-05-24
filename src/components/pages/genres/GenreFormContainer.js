@@ -36,7 +36,6 @@ class GenreFormContainer extends React.Component {
         },
       };
     });
-    console.log(this.state.newGenre.name);
   };
 
   handleFormSubmit = (event) => {
@@ -56,7 +55,6 @@ class GenreFormContainer extends React.Component {
     apiClient.createGenre(newGenre).then((response) => {
       if (response.status === 201) {
         response.json().then((data) => {
-          console.log(data);
           history.push(data.url);
         });
       } else {

@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/header/Header";
 
 import Books from "./components/pages/books/Books";
-import BookFormContainer from "./components/pages/books/BookFormContainer";
+import BookCreate from "./components/pages/books/BookCreate";
+import BookEdit from "./components/pages/books/BookEdit";
 import BookDetails from "./components/pages/books/BookDetails";
 import BookDelete from "./components/pages/books/BookDelete";
 
@@ -27,7 +28,8 @@ function App() {
           <Switch>
             <Route exact path="/books" component={Books} />
 
-            <Route path="/books/create" component={BookFormContainer} />
+            <Route path="/books/create" component={BookCreate} />
+            <Route path="/books/edit" component={BookEdit} />
             <Route path="/books/delete" component={BookDelete} />
             <Route path="/books/:id" component={BookDetails} />
 

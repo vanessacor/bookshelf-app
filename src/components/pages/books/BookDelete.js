@@ -5,7 +5,8 @@ import { withApiClient } from "../../../services/withApiClient";
 class BookDelete extends React.Component {
   constructor(props) {
     super(props);
-    this.book = this.props.location.state;
+    //if not location state redirect
+    this.book = this.props.location.state.book;
   }
 
   deleteBook = () => {
@@ -15,7 +16,6 @@ class BookDelete extends React.Component {
       history.push("./");
     }
     apiClient.deleteBook(id).then(() => {
-      console.log("book deleted");
       history.push("./");
     });
   };

@@ -24,12 +24,21 @@ class BookDetail extends Component {
 
   handleDelete = (event) => {
     event.preventDefault();
-    console.log("I was clicked");
     const { book } = this.state;
     const { history } = this.props;
     history.push({
       pathname: "./delete",
-      state: book,
+      state: { book },
+    });
+  };
+
+  handleEdit = (event) => {
+    event.preventDefault();
+    const { book } = this.state;
+    const { history } = this.props;
+    history.push({
+      pathname: "./edit",
+      state: { book },
     });
   };
 
@@ -69,6 +78,11 @@ class BookDetail extends Component {
             className={"delete"}
             onClick={this.handleDelete}
             title={"Delete Book"}
+          />
+          <Button
+            className={"edit"}
+            onClick={this.handleEdit}
+            title={"edit Book"}
           />
         </div>
         <button className="button addBook">

@@ -12,7 +12,6 @@ class AuthorDelete extends Component {
 
   deleteAuthor = () => {
     const { id, books } = this.author;
-    console.log("I was clicked", this.author);
     const { apiClient, history } = this.props;
     if (!this.author) {
       history.push("./");
@@ -21,7 +20,6 @@ class AuthorDelete extends Component {
       return;
     } else
       apiClient.deleteAuthor(id).then(() => {
-        console.log("author deleted");
         history.push("./");
       });
   };
@@ -60,7 +58,6 @@ class AuthorDelete extends Component {
 
   renderContents() {
     const { name, books } = this.author;
-    console.log(books);
     if (!this.author) {
       this.props.history.push("./");
     }

@@ -12,7 +12,6 @@ class GenreDelete extends Component {
 
   deleteGenre = () => {
     const { id, books } = this.genre;
-    console.log("I was clicked", this.genre);
     const { apiClient, history } = this.props;
     if (!this.genre) {
       history.push("./");
@@ -21,7 +20,6 @@ class GenreDelete extends Component {
       return;
     } else
       apiClient.deleteGenre(id).then(() => {
-        console.log("genre deleted");
         history.push("./");
       });
   };
@@ -32,7 +30,6 @@ class GenreDelete extends Component {
   };
 
   render() {
-    console.log("this genre", this.genre);
     return <div className="delete delete-genre">{this.renderContents()}</div>;
   }
 
@@ -60,7 +57,6 @@ class GenreDelete extends Component {
 
   renderContents() {
     const { name, books } = this.genre;
-    console.log(books);
     if (!this.genre) {
       this.props.history.push("./");
     }
