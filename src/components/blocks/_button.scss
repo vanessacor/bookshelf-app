@@ -12,6 +12,17 @@
     color: $font-color;
   }
 
+  &-add {
+    a {
+      text-decoration: none;
+      color: $base-color-light;
+
+      &:hover {
+        color: $font-color;
+      }
+    }
+  }
+
   &-submit {
     margin-bottom: 20px;
   }
@@ -28,5 +39,9 @@
   &-delete-cancel {
     background-color: $accent-color-dark;
     color: $base-color-light;
+  }
+
+  &-edit {
+    background-color: $accent-color-light;
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class CheckBox extends Component {
+class MultiCheckBox extends Component {
   constructor(props) {
     super(props);
     this.props = props;
@@ -8,12 +8,20 @@ class CheckBox extends Component {
 
   handleChange = (event) => {
     const { onChange, name } = this.props;
+    let genre = this.props.value;
     const { value } = event.target;
+
+    if (genre.indexOf(value) > -1) {
+      const updatedGenre = genre.filter((item) => item !== value);
+      genre = updatedGenre;
+    } else {
+      genre = [...genre, value];
+    }
 
     const optionEvent = {
       target: {
         name: name,
-        value: value,
+        value: genre,
       },
     };
 
@@ -49,4 +57,4 @@ class CheckBox extends Component {
   }
 }
 
-export default CheckBox;
+export default MultiCheckBox;

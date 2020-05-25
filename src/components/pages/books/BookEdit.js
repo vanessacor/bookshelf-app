@@ -6,7 +6,7 @@ import Input from "../../blocks/form/Input";
 import Select from "../../blocks/form/Select";
 import RadioButton from "../../blocks/form/RadioButton";
 import Button from "../../blocks/Button";
-import CheckBox from "../../blocks/form/CheckBox";
+import MultiCheckBox from "../../blocks/form/MultiCheckBox";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
 function depopulate(book) {
@@ -96,27 +96,6 @@ class BookEdit extends Component {
     });
   };
 
-  handleCheckBox = (event) => {
-    const { value, name } = event.target;
-
-    let { genre } = this.state.book;
-
-    if (genre.indexOf(value) > -1) {
-      genre = genre.filter((item) => item !== value);
-    } else {
-      genre = [...genre, value];
-    }
-
-    this.setState((prevState) => {
-      return {
-        book: {
-          ...prevState.book,
-          [name]: genre,
-        },
-      };
-    });
-  };
-
   handleFormSubmit = (event) => {
     event.preventDefault();
 
@@ -196,12 +175,12 @@ class BookEdit extends Component {
           )}
         </Select>
 
-        <CheckBox // rename to MultiCheckBox
+        <MultiCheckBox // rename to MultiCheckBox
           title={"Genre"}
           name={"genre"}
           options={genres}
-          // value = {genre} - value is array of IDs [id1, id2]
-          onChange={this.handleCheckBox}
+          value={genre}
+          onChange={this.handleInput}
           submitted={this.state.submitted}
           feedbackMessage={"Please choose one genre"}
         />

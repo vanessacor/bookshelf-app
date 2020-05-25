@@ -75,17 +75,17 @@ class BookDetail extends Component {
           <h3>Status:</h3>
           <p>{status}</p>
           <Button
-            className={"delete"}
+            className={"button-delete"}
             onClick={this.handleDelete}
-            title={"Delete Book"}
+            title={"Delete"}
           />
           <Button
-            className={"edit"}
+            className={"button-edit"}
             onClick={this.handleEdit}
-            title={"edit Book"}
+            title={"Edit"}
           />
         </div>
-        <button className="button addBook">
+        <button className="button button-add">
           <Link to={"/books/create"}>Add Book</Link>
         </button>
       </div>

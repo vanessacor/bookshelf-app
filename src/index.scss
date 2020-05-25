@@ -9,7 +9,7 @@
 @import "styles/delete";
 
 @import "./components/blocks/form/form";
-@import "./components/blocks/form/checkBox";
+@import "./components/blocks/form/multicheckBox";
 @import "./components/blocks/form/input";
 @import "./components/blocks/form/select";
 @import "./components/blocks/form/radioButton";
@@ -20,7 +20,6 @@
 @import "./components/header/headerNav";
 @import "./components/pages/books/books";
 @import "./components/pages/books/bookCard";
-@import "./components/pages/books/addBookBtn";
 @import "./components/pages/books/bookDetails";
 @import "./components/pages/books/bookDelete";
 

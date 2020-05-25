@@ -6,7 +6,7 @@ import Input from "../../blocks/form/Input";
 import Select from "../../blocks/form/Select";
 import RadioButton from "../../blocks/form/RadioButton";
 import Button from "../../blocks/Button";
-import CheckBox from "../../blocks/form/CheckBox";
+import MultiCheckBox from "../../blocks/form/MultiCheckBox";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
 class BookCreate extends Component {
@@ -69,6 +69,7 @@ class BookCreate extends Component {
         },
       };
     });
+    console.log(this.state.book);
   };
 
   handleRadioBtn = (event) => {
@@ -81,28 +82,6 @@ class BookCreate extends Component {
           [name]: value,
         },
         selectedStatus: value,
-      };
-    });
-  };
-
-  handleCheckBox = (event) => {
-    // event.preventDefault();
-    const { value, name } = event.target;
-
-    let { genre } = this.state.book;
-
-    if (genre.indexOf(value) > -1) {
-      genre = genre.filter((item) => item !== value);
-    } else {
-      genre = [...genre, value];
-    }
-
-    this.setState((prevState) => {
-      return {
-        book: {
-          ...prevState.book,
-          [name]: value,
-        },
       };
     });
   };
@@ -157,7 +136,7 @@ class BookCreate extends Component {
       submitted,
     } = this.state;
 
-    const { title, author, summary, isbn } = book;
+    const { title, author, genre, summary, isbn } = book;
     const authors = authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
     });
@@ -196,11 +175,12 @@ class BookCreate extends Component {
           )}
         </Select>
 
-        <CheckBox
+        <MultiCheckBox
           title={"Genre"}
           name={"genre"}
+          value={genre}
           options={genres}
-          onChange={this.handleCheckBox}
+          onChange={this.handleInput}
           submitted={this.state.submitted}
           feedbackMessage={"Please choose one genre"}
         />
