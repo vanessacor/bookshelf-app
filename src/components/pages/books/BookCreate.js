@@ -24,7 +24,6 @@ class BookCreate extends Component {
       },
       authorsOptions: [],
       genreOptions: [],
-      selectedStatus: "Read",
       submitted: false,
     };
   }
@@ -70,20 +69,6 @@ class BookCreate extends Component {
       };
     });
     console.log(this.state.book);
-  };
-
-  handleRadioBtn = (event) => {
-    let { value, name } = event.target;
-
-    this.setState((prevState) => {
-      return {
-        book: {
-          ...prevState.book,
-          [name]: value,
-        },
-        selectedStatus: value,
-      };
-    });
   };
 
   handleFormSubmit = (event) => {
@@ -136,7 +121,7 @@ class BookCreate extends Component {
       submitted,
     } = this.state;
 
-    const { title, author, genre, summary, isbn } = book;
+    const { title, author, genre, status, summary, isbn } = book;
     const authors = authorsOptions.map((author) => {
       return { value: author.id, label: author.name };
     });
@@ -192,18 +177,18 @@ class BookCreate extends Component {
           <RadioButton
             name={"status"}
             id={"Read"}
-            isSelected={this.state.selectedStatus === "Read"}
+            isSelected={status === "Read"}
             value={"Read"}
             label={"Read"}
-            onChange={this.handleRadioBtn}
+            onChange={this.handleInput}
           />
           <RadioButton
             name={"status"}
             id={"Unread"}
-            isSelected={this.state.selectedStatus === "Unread"}
+            isSelected={status === "Unread"}
             value={"Unread"}
             label={"Unread"}
-            onChange={this.handleRadioBtn}
+            onChange={this.handleInput}
           />
         </div>
         <Input
