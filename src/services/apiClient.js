@@ -66,6 +66,17 @@ export class ApiClient {
     });
   }
 
+  updateAuthor(author) {
+    return fetch(`${this.baseUrl}/authors/${author.id}`, {
+      method: "PUT",
+      body: JSON.stringify(author),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   deleteAuthor(id) {
     return fetch(`${this.baseUrl}/authors/${id}`, {
       method: "delete",

@@ -10,7 +10,8 @@ import BookDetails from "./components/pages/books/BookDetails";
 import BookDelete from "./components/pages/books/BookDelete";
 
 import Authors from "./components/pages/authors/Authors";
-import AuthorFormContainer from "./components/pages/authors/AuthorFormContainer";
+import AuthorCreate from "./components/pages/authors/AuthorCreate";
+import AuthorEdit from "./components/pages/authors/AuthorEdit";
 import AuthorDetails from "./components/pages/authors/AuthorDetails";
 import AuthorDelete from "./components/pages/authors/AuthorDelete";
 
@@ -34,7 +35,8 @@ function App() {
             <Route path="/books/:id" component={BookDetails} />
 
             <Route exact path="/authors" component={Authors} />
-            <Route path="/authors/create" component={AuthorFormContainer} />
+            <Route path="/authors/create" component={AuthorCreate} />
+            <Route path="/authors/edit" component={AuthorEdit} />
             <Route path="/authors/delete" component={AuthorDelete} />
             <Route path="/authors/:id" component={AuthorDetails} />
 

@@ -4,11 +4,11 @@ import Button from "../../blocks/Button";
 import { withApiClient } from "../../../services/withApiClient";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
-class AuthorFormContainer extends React.Component {
+class AuthorCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newAuthor: {
+      author: {
         firstName: "",
         familyName: "",
         dateOfBirth: "",
@@ -19,8 +19,8 @@ class AuthorFormContainer extends React.Component {
   }
 
   isInputValid(input) {
-    const { newAuthor } = this.state;
-    if (!newAuthor[input]) {
+    const { author } = this.state;
+    if (!author[input]) {
       return false;
     } else {
       return true;
@@ -43,8 +43,8 @@ class AuthorFormContainer extends React.Component {
 
     this.setState((prevState) => {
       return {
-        newAuthor: {
-          ...prevState.newAuthor,
+        author: {
+          ...prevState.author,
           [name]: value,
         },
       };
@@ -56,7 +56,7 @@ class AuthorFormContainer extends React.Component {
 
     this.setState({ validationError: false, unexpectedError: false });
 
-    const { newAuthor } = this.state;
+    const { author } = this.state;
 
     const { apiClient, history } = this.props;
 
@@ -65,7 +65,7 @@ class AuthorFormContainer extends React.Component {
       return;
     }
 
-    apiClient.createAuthor(newAuthor).then((response) => {
+    apiClient.createAuthor(author).then((response) => {
       if (response.status === 201) {
         response.json().then((data) => {
           history.push(data.url);
@@ -79,7 +79,7 @@ class AuthorFormContainer extends React.Component {
   handleClearForm = (event) => {
     event.preventDefault();
     this.setState({
-      newAuthor: {
+      author: {
         firstName: "",
         familyName: "",
         dateOfBirth: "",
@@ -90,13 +90,13 @@ class AuthorFormContainer extends React.Component {
 
   render() {
     const {
-      newAuthor,
+      author,
       submitted,
       hasErrors,
       validationError,
       unexpectedError,
     } = this.state;
-    const { firstName, familyName, dateOfBirth, dateOfDeath } = newAuthor;
+    const { firstName, familyName, dateOfBirth, dateOfDeath } = author;
     console.log(hasErrors);
 
     return (
@@ -172,4 +172,4 @@ class AuthorFormContainer extends React.Component {
   }
 }
 
-export default withApiClient(AuthorFormContainer);
+export default withApiClient(AuthorCreate);

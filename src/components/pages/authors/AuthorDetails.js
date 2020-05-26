@@ -33,6 +33,16 @@ class AuthorDetails extends Component {
     });
   };
 
+  handleEdit = (event) => {
+    event.preventDefault();
+    const { author } = this.state;
+    const { history } = this.props;
+    history.push({
+      pathname: "./edit",
+      state: { author },
+    });
+  };
+
   render() {
     const { loading, author } = this.state;
 
@@ -47,9 +57,14 @@ class AuthorDetails extends Component {
         {this.renderCardDetails(author)}
         {!!books.length ? this.renderBooks() : this.renderNoBooks()}
         <Button
-          className={"delete"}
+          className={"button-delete"}
           onClick={this.handleDelete}
-          title={"Delete Author"}
+          title={"Delete"}
+        />
+        <Button
+          className={"button-edit"}
+          onClick={this.handleEdit}
+          title={"Edit"}
         />
       </div>
     );
