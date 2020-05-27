@@ -22,7 +22,7 @@ class Genres extends Component {
   }
 
   render() {
-    return <div className="Genres">{this.renderContents()}</div>;
+    return <div className="genres">{this.renderContents()}</div>;
   }
 
   renderContents() {
@@ -43,14 +43,13 @@ class Genres extends Component {
     ));
     return (
       <>
+        <button className="button addGenre">
+          <Link to={"/genres/create"}>Add Genre</Link>
+        </button>
         <div className="genre-list">
           <h2>List of Genres:</h2>
           {items}
         </div>
-
-        <button className="button addGenre">
-          <Link to={"/genres/create"}>Add Genre</Link>
-        </button>
       </>
     );
   }

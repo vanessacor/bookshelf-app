@@ -3,6 +3,9 @@ export class ApiClient {
     this.baseUrl = baseUrl;
   }
 
+  getAllNumbers() {
+    return fetch(`${this.baseUrl}/`).then((response) => response.json());
+  }
   getAllBooks() {
     return fetch(`${this.baseUrl}/books`).then((response) => response.json());
   }

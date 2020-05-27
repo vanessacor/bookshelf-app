@@ -45,10 +45,10 @@ class Books extends React.Component {
     });
     return (
       <>
-        <div className="book-list">{cards}</div>
         <button className="button book-add">
           <Link to={"/books/create"}>Add Book</Link>
         </button>
+        <div className="book-list">{cards}</div>
       </>
     );
   }

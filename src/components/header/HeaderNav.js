@@ -6,7 +6,7 @@ function HeaderNav() {
     <nav className="header-menu">
       <ul>
         <li className="header-menu-link">
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
         <li className="header-menu-link">
           <Link to="/books">Books</Link>

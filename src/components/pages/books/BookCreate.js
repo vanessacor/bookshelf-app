@@ -68,7 +68,6 @@ class BookCreate extends Component {
         },
       };
     });
-    console.log(this.state.book);
   };
 
   handleFormSubmit = (event) => {

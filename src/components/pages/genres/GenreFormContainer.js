@@ -9,7 +9,7 @@ class GenreFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newGenre: {
+      genre: {
         name: "",
       },
       submitted: false,
@@ -17,8 +17,8 @@ class GenreFormContainer extends React.Component {
   }
 
   isValid() {
-    const { newGenre } = this.state;
-    if (!newGenre.name) {
+    const { genre } = this.state;
+    if (!genre.name) {
       return false;
     } else {
       return true;
@@ -30,8 +30,8 @@ class GenreFormContainer extends React.Component {
 
     this.setState((prevState) => {
       return {
-        newGenre: {
-          ...prevState.newGenre,
+        genre: {
+          ...prevState.genre,
           [name]: value,
         },
       };
@@ -43,7 +43,7 @@ class GenreFormContainer extends React.Component {
 
     this.setState({ validationError: false, unexpectedError: false });
 
-    const { newGenre } = this.state;
+    const { genre } = this.state;
 
     const { apiClient, history } = this.props;
 
@@ -52,7 +52,7 @@ class GenreFormContainer extends React.Component {
       return;
     }
 
-    apiClient.createGenre(newGenre).then((response) => {
+    apiClient.createGenre(genre).then((response) => {
       if (response.status === 201) {
         response.json().then((data) => {
           history.push(data.url);
@@ -64,20 +64,20 @@ class GenreFormContainer extends React.Component {
   };
   render() {
     const {
-      newGenre,
+      genre,
       submitted,
       hasErrors,
       validationError,
       unexpectedError,
     } = this.state;
-    const { name } = newGenre;
+    const { name } = genre;
     console.log(hasErrors);
 
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>
         {unexpectedError && <ErrorBanner />}
         {validationError && <ErrorBanner>Please review the errors</ErrorBanner>}
-        <legend className="form-legend">New Author</legend>
+        <legend className="form-legend">New Genre</legend>
         <Input
           type={"text"}
           title={"Genre Name"}

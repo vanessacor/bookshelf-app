@@ -19,6 +19,7 @@ import Genres from "./components/pages/genres/Genres";
 import GenreFormContainer from "./components/pages/genres/GenreFormContainer";
 import GenreDelete from "./components/pages/genres/GenreDelete";
 import GenreDetails from "./components/pages/genres/GenreDetails";
+import Home from "./components/pages/Home";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Header />
         <main className="main">
           <Switch>
+            <Route exact path="/home" component={Home} />
+
             <Route exact path="/books" component={Books} />
 
             <Route path="/books/create" component={BookCreate} />

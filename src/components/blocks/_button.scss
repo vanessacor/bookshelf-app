@@ -34,14 +34,13 @@
 
   &-delete {
     margin-right: 10px;
+    background-color: $accent-color-light;
   }
 
   &-delete-cancel {
-    background-color: $accent-color-dark;
     color: $base-color-light;
   }
 
-  &-edit {
-    background-color: $accent-color-light;
-  }
+  // &-edit {
+  // }
 }

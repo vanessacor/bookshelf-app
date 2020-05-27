@@ -1,5 +1,8 @@
 //
-
+.genres {
+  position: relative;
+  max-width: 850px;
+}
 .genre-list {
   margin-bottom: 30px;
   h2 {
@@ -23,7 +26,9 @@
 }
 
 .addGenre {
-  margin-bottom: 15px;
+  position: fixed;
+  right: 29px;
+  top: 137px;
   a {
     text-decoration: none;
     color: $base-color-light;

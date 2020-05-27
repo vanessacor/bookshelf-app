@@ -96,7 +96,6 @@ class AuthorEdit extends React.Component {
     apiClient.updateAuthor(author).then((response) => {
       if (response.status === 200) {
         response.json().then((data) => {
-          console.log(data);
           history.push(data.url);
         });
       } else {
@@ -108,7 +107,6 @@ class AuthorEdit extends React.Component {
   render() {
     const { author, submitted, validationError, unexpectedError } = this.state;
     const { firstName, familyName, dateOfBirth, dateOfDeath } = author;
-    console.log(author);
 
     return (
       <form className="form-container" onSubmit={this.handleFormSubmit}>

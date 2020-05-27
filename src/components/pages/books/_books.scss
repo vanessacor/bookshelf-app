@@ -1,6 +1,11 @@
 .Books {
-  //
+  position: relative;
+  max-width: 850px;
+
   .book-add {
+    position: fixed;
+    right: 29px;
+    top: 137px;
     a {
       text-decoration: none;
       color: $base-color-light;
