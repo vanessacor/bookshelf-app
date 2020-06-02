@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
-
 import AuthorCard from "./AuthorCard";
 import Loader from "../../blocks/Loader";
+import AddFab from "../../blocks/AddFab";
+
 import { withApiClient } from "../../../services/withApiClient";
 
 class Authors extends Component {
@@ -45,10 +45,7 @@ class Authors extends Component {
     return (
       <>
         <div className="author-list">{cards}</div>
-
-        <button className="button addAuthor">
-          <Link to={"/authors/create"}>Add Author</Link>
-        </button>
+        <AddFab link={"/authors/create"} className={"author"} />
       </>
     );
   }

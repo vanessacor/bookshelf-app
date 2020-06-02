@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway&display=swap");
 @import "typography";
 @import "reset";
+@import "body";
 @import "app";
 @import "main";
 @import "styles/card";
@@ -15,6 +16,8 @@
 @import "./components/blocks/form/radioButton";
 @import "./components/blocks/button";
 @import "./components/blocks/loader";
+@import "./components/blocks/addFab";
+@import "./components/blocks/addMenu";
 
 @import "./components/header/header";
 @import "./components/header/headerNav";

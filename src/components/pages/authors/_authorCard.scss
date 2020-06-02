@@ -1,5 +1,15 @@
-// .card-author {
-//   .card-details-author {
-//     //
-//   }
-// }
+.card-author {
+  height: 108px;
+
+  p {
+    font-style: italic;
+    font-weight: bold;
+    color: #a1683a;
+  }
+  a {
+    text-decoration: none;
+    font-style: italic;
+    font-weight: bold;
+    color: #a1683a;
+  }
+}

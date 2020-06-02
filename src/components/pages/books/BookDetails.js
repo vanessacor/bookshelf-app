@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { withApiClient } from "../../../services/withApiClient";
 import Loader from "../../blocks/Loader";
 import Button from "../../blocks/Button";
-import { withApiClient } from "../../../services/withApiClient";
+import AddFab from "../../blocks/AddFab";
 
 class BookDetail extends Component {
   state = {
@@ -75,19 +76,17 @@ class BookDetail extends Component {
           <h3>Status:</h3>
           <p>{status}</p>
           <Button
-            className={"button-delete"}
-            onClick={this.handleDelete}
-            title={"Delete"}
-          />
-          <Button
             className={"button-edit"}
             onClick={this.handleEdit}
             title={"Edit"}
           />
+          <Button
+            className={"button-delete"}
+            onClick={this.handleDelete}
+            title={"Delete"}
+          />
         </div>
-        <button className="button button-add">
-          <Link to={"/books/create"}>Add Book</Link>
-        </button>
+        <AddFab link={"/books/create"} className={"book"} />
       </div>
     );
   }

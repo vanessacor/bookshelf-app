@@ -15,6 +15,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## todo
 
+- styling:
+
+  - add button
+  - cards responsive
+
+- ux improv
+
+  - toast when you save book and author
+  - form set focus on componentdidmount
+  - creatAnother checkbox
+
 - cleanup:
 
   - check for the need fo defensive checks

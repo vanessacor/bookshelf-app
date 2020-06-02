@@ -5,22 +5,11 @@
   border-radius: 3px;
   transition: 1s;
   color: $base-color-light;
-  font-size: 20px;
+  font-size: calc(20px + 0.5vw);
 
   &:hover {
     box-shadow: none;
     color: $font-color;
-  }
-
-  &-add {
-    a {
-      text-decoration: none;
-      color: $base-color-light;
-
-      &:hover {
-        color: $font-color;
-      }
-    }
   }
 
   &-submit {
@@ -29,11 +18,13 @@
 
   &-clear {
     margin-left: 20px;
-    background-color: $accent-color-dark;
+    background-color: $accent-color-light;
   }
 
+  &-edit {
+    margin-right: 15px;
+  }
   &-delete {
-    margin-right: 10px;
     background-color: $accent-color-light;
   }
 

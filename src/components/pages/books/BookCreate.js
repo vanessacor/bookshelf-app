@@ -139,6 +139,7 @@ class BookCreate extends Component {
           value={title}
           placeholder={"Enter the Title"}
           onChange={this.handleInput}
+          autoFocus={true}
         >
           {submitted && !this.isInputValid("title") && (
             <p className="feedback">Please Give a Title</p>

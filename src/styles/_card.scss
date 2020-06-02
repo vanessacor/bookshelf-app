@@ -1,10 +1,13 @@
 .card {
+  width: calc(290px + 1vw);
+  height: 175px;
   padding: 10px 10px 5px;
   margin-bottom: 30px;
   border-radius: 5px;
   box-shadow: 1px 1px 5px $accent-color-light;
+  text-decoration: none;
 
-  h2 a {
+  h2 {
     margin: 0;
     color: $font-color;
     font-weight: lighter;
@@ -12,10 +15,10 @@
     text-decoration: none;
     text-transform: uppercase;
 
-    &:hover {
-      color: $highlight-color;
-      font-weight: bold;
-    }
+    // &:hover {
+    //   color: $highlight-color;
+    //   font-weight: bold;
+    // }
   }
 
   .card-details {

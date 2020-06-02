@@ -1,5 +1,34 @@
-// .card-book {
-//   .card-details-book {
-//     //
-//   }
-// }
+.card-book {
+  position: relative;
+  .card-details-book {
+    p {
+      font-style: italic;
+      font-weight: bold;
+      color: #a1683a;
+    }
+    a {
+      text-decoration: none;
+      font-style: italic;
+      font-weight: bold;
+      color: #a1683a;
+    }
+
+    //
+  }
+  h3 {
+    position: absolute;
+    bottom: 10px;
+    width: 95%;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fbf7f4;
+    text-align: center;
+  }
+
+  .book-read {
+    background-color: #6c9a8b;
+  }
+  .book-unread {
+    background-color: #e8998d;
+  }
+}

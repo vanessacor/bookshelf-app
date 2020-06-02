@@ -1,23 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function HeaderNav() {
   return (
     <nav className="header-menu">
-      <ul>
-        <li className="header-menu-link">
-          <Link to="/home">Home</Link>
-        </li>
-        <li className="header-menu-link">
-          <Link to="/books">Books</Link>
-        </li>
-        <li className="header-menu-link">
-          <Link to="/authors">Authors</Link>
-        </li>
-        <li className="header-menu-link">
-          <Link to="/genres">Genres</Link>
-        </li>
-      </ul>
+      <NavLink className="menu-item" activeClassName="selected" to="/home">
+        Home
+      </NavLink>
+      <NavLink className="menu-item" activeClassName="selected" to="/books">
+        Books
+      </NavLink>
+      <NavLink className="menu-item" activeClassName="selected" to="/authors">
+        Authors
+      </NavLink>
+      <NavLink className="menu-item" activeClassName="selected" to="/genres">
+        Genres
+      </NavLink>
     </nav>
   );
 }

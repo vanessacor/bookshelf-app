@@ -1,6 +1,5 @@
 .Books {
   position: relative;
-  max-width: 850px;
 
   .book-add {
     position: fixed;
@@ -13,6 +12,18 @@
       &:hover {
         color: $font-color;
       }
+    }
+  }
+
+  .book-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    a {
+      text-decoration: none;
+      color: $font-color;
     }
   }
 }

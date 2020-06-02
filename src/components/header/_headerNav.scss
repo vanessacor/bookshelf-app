@@ -1,24 +1,18 @@
 .header-menu {
-  margin-bottom: 20px;
-  ul {
-    display: flex;
-    list-style-type: none;
-  }
+  margin: 0 auto 55px;
+  list-style-type: none;
 
-  &-link {
+  .menu-item {
+    margin-right: calc(5px + 0.5vw);
     text-decoration: none;
-  }
-
-  li {
-    margin-right: 5px;
-
-    a {
-      text-decoration: none;
-      color: $font-color;
-      &:hover {
-        color: $highlight-color;
-        font-weight: bold;
-      }
+    font-size: calc(16px + 0.5vw);
+    color: $font-color;
+    &:hover {
+      font-weight: bold;
     }
+  }
+  .selected {
+    border-bottom: 2px solid #3f3f44;
+    font-weight: bold;
   }
 }

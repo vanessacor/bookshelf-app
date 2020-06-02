@@ -1,7 +1,16 @@
 import React from "react";
 
 function Input(props) {
-  const { name, type, value, onChange, placeholder, title, children } = props;
+  const {
+    name,
+    type,
+    value,
+    onChange,
+    placeholder,
+    title,
+    autoFocus,
+    children,
+  } = props;
   return (
     <div className="form-group">
       <label htmlFor={name} className="form-label">
@@ -17,6 +26,7 @@ function Input(props) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        autoFocus={autoFocus}
       />
     </div>
   );

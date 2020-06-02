@@ -149,7 +149,7 @@ class AuthorCreate extends React.Component {
 
         <Input
           type={"date"}
-          title={"dateOfDeath"}
+          title={"Date Of Death"}
           name={"dateOfDeath"}
           value={dateOfDeath}
           placeholder={"Author Date of Death"}

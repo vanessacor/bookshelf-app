@@ -9,6 +9,7 @@ class Home extends Component {
     bookCount: "",
     authorCount: "",
     genreCount: "",
+    toggled: false,
   };
 
   componentDidMount() {
@@ -23,8 +24,13 @@ class Home extends Component {
       });
     });
   }
+
+  showAddMenu = () => {
+    this.setState({ toggled: !this.state.toggled });
+  };
+
   render() {
-    const { bookCount, authorCount, genreCount } = this.state;
+    const { bookCount, authorCount, genreCount, toggled } = this.state;
     return (
       <div className="home">
         <div className="home-information">
@@ -40,16 +46,29 @@ class Home extends Component {
           </div>
         </div>
 
-        <div className="home-add">
-          <button className="button button-add">
-            <Link to={"/books/create"}>Add Book</Link>
+        <div className="toggle-menu">
+          <button onClick={this.showAddMenu} className="toggle-menu-button">
+            <ion-icon name="add-outline"></ion-icon>
           </button>
-          <button className="button button-add">
-            <Link to={"/authors/create"}>Add Author</Link>
-          </button>
-          <button className="button button-add">
-            <Link to={"/genres/create"}>Add Genre</Link>
-          </button>
+          {toggled && (
+            <div className="toggle-menu-list">
+              <button className="toggle-menu-list-item">
+                <Link to={"/books/create"}>
+                  <ion-icon name="book-outline"></ion-icon>
+                </Link>
+              </button>
+              <button className="toggle-menu-list-item">
+                <Link to={"/authors/create"}>
+                  <ion-icon name="person-outline"></ion-icon>
+                </Link>
+              </button>
+              <button className="toggle-menu-list-item">
+                <Link to={"/genres/create"}>
+                  <ion-icon name="pricetag-outline"></ion-icon>
+                </Link>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );

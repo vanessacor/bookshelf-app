@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { withApiClient } from "../../../services/withApiClient";
 import Loader from "../../blocks/Loader";
 import GenreItem from "./GenreItem";
+import AddFab from "../../blocks/AddFab";
 
 class Genres extends Component {
   state = {
@@ -43,9 +43,7 @@ class Genres extends Component {
     ));
     return (
       <>
-        <button className="button addGenre">
-          <Link to={"/genres/create"}>Add Genre</Link>
-        </button>
+        <AddFab link={"/genres/create"} className={"genre"} />
         <div className="genre-list">
           <h2>List of Genres:</h2>
           {items}

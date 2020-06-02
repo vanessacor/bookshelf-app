@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import { withApiClient } from "../../../services/withApiClient";
 
 import BookCard from "./BookCard";
 import Loader from "../../blocks/Loader";
+import AddFab from "../../blocks/AddFab";
 
 class Books extends React.Component {
   state = {
@@ -45,10 +45,8 @@ class Books extends React.Component {
     });
     return (
       <>
-        <button className="button book-add">
-          <Link to={"/books/create"}>Add Book</Link>
-        </button>
         <div className="book-list">{cards}</div>
+        <AddFab link={"/books/create"} className={"book"} />
       </>
     );
   }
