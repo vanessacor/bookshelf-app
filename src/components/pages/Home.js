@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { withApiClient } from "../../services/withApiClient";
+import HomeMobileMenu from "../blocks/HomeMobileMenu";
+import HomeDesktopMenu from "../blocks/HomeDesktopMenu";
 
 class Home extends Component {
   state = {
@@ -46,30 +48,9 @@ class Home extends Component {
           </div>
         </div>
 
-        <div className="toggle-menu">
-          <button onClick={this.showAddMenu} className="toggle-menu-button">
-            <ion-icon name="add-outline"></ion-icon>
-          </button>
-          {toggled && (
-            <div className="toggle-menu-list">
-              <button className="toggle-menu-list-item">
-                <Link to={"/books/create"}>
-                  <ion-icon name="book-outline"></ion-icon>
-                </Link>
-              </button>
-              <button className="toggle-menu-list-item">
-                <Link to={"/authors/create"}>
-                  <ion-icon name="person-outline"></ion-icon>
-                </Link>
-              </button>
-              <button className="toggle-menu-list-item">
-                <Link to={"/genres/create"}>
-                  <ion-icon name="pricetag-outline"></ion-icon>
-                </Link>
-              </button>
-            </div>
-          )}
-        </div>
+        <HomeDesktopMenu toggled={toggled} onClick={this.showAddMenu} />
+
+        <HomeMobileMenu toggled={toggled} onClick={this.showAddMenu} />
       </div>
     );
   }

@@ -13,7 +13,9 @@ function Select(props) {
   } = props;
   return (
     <div className="form-group">
-      <label htmlFor={name}> {title} </label>
+      <label className="form-label" htmlFor={name}>
+        {title}
+      </label>
       {children}
 
       <select

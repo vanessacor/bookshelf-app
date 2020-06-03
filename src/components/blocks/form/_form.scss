@@ -1,13 +1,13 @@
 .form-container {
   margin: 0 auto;
-  padding: 5px;
+  padding: 15px;
   text-align: left;
   box-shadow: 1px 1px 5px $highlight-color;
   border-radius: 5px;
 }
 
 .form-legend {
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   padding-top: 10px;
   text-align: center;
   font-size: 30px;
@@ -17,11 +17,14 @@
 }
 
 .form-label {
-  margin-left: 5px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #6c9a8b;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .feedback {
