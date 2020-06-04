@@ -1,13 +1,12 @@
-@import "variables";
+@import "./styles/variables";
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway&display=swap");
-@import "typography";
-@import "reset";
-@import "body";
+@import "./styles/typography";
+@import "./styles/reset";
+@import "./styles/body";
 @import "app";
-@import "main";
+@import "./styles/main";
 @import "styles/card";
 @import "styles/details";
-@import "styles/delete";
 
 @import "./components/blocks/form/form";
 @import "./components/blocks/form/multicheckBox";
@@ -18,12 +17,12 @@
 @import "./components/blocks/loader";
 @import "./components/blocks/addFab";
 @import "./components/blocks/addMenu";
-@import "./components/blocks/homeMobileMenu";
-@import "./components/blocks/homeDesktopMenu";
 
 @import "./components/header/header";
 @import "./components/header/headerNav";
-@import "./components/pages/home";
+@import "./components/pages/home/home";
+@import "./components/pages/home/homeDesktopMenu";
+@import "./components/pages/home/homeMobileMenu";
 @import "./components/pages/books/books";
 @import "./components/pages/books/bookCard";
 @import "./components/pages/books/bookDetails";

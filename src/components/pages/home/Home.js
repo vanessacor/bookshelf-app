@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import { withApiClient } from "../../services/withApiClient";
-import HomeMobileMenu from "../blocks/HomeMobileMenu";
-import HomeDesktopMenu from "../blocks/HomeDesktopMenu";
+import { withApiClient } from "../../../services/withApiClient";
+import HomeMobileMenu from "./HomeMobileMenu";
+import HomeDesktopMenu from "./HomeDesktopMenu";
 
 class Home extends Component {
   state = {
