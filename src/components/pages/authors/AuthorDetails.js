@@ -57,14 +57,14 @@ class AuthorDetails extends Component {
         {this.renderCardDetails(author)}
         {!!books.length ? this.renderBooks() : this.renderNoBooks()}
         <Button
-          className={"button-delete"}
-          onClick={this.handleDelete}
-          title={"Delete"}
-        />
-        <Button
           className={"button-edit"}
           onClick={this.handleEdit}
           title={"Edit"}
+        />
+        <Button
+          className={"button-delete"}
+          onClick={this.handleDelete}
+          title={"Delete"}
         />
       </div>
     );

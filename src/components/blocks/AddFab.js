@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function AddFab(props) {
   const { link, className } = props;
@@ -10,7 +8,7 @@ function AddFab(props) {
   return (
     <button className={classNames}>
       <Link to={link}>
-        <FontAwesomeIcon icon={faPlus} />
+        <ion-icon className="icon" name="add-outline"></ion-icon>
       </Link>
     </button>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./components/header/Header";
+import Home from "./components/pages/Home";
 
 import Books from "./components/pages/books/Books";
 import BookCreate from "./components/pages/books/BookCreate";
@@ -19,7 +20,6 @@ import Genres from "./components/pages/genres/Genres";
 import GenreFormContainer from "./components/pages/genres/GenreFormContainer";
 import GenreDelete from "./components/pages/genres/GenreDelete";
 import GenreDetails from "./components/pages/genres/GenreDetails";
-import Home from "./components/pages/Home";
 
 function App() {
   return (

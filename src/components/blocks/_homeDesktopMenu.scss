@@ -4,16 +4,30 @@
 
   &-button {
     position: absolute;
-    right: 20px;
-    bottom: -65px;
+    top: 178px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(40px + 0.5vw);
+    height: calc(40px + 0.5vw);
+    border-radius: 50%;
+    border-style: none;
+    border-color: none;
+    box-shadow: 0 6px 10px 0 #666;
+    transition: all 0.1s ease-in-out;
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    background-color: $highlight-color;
   }
 
   &-list {
     position: absolute;
-    top: calc(87px - 1vw);
+    top: 41px;
+    right: 10px;
     min-width: 160px;
     border-radius: 5px;
-    right: 20px;
     background-color: $base-color-light;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 
@@ -30,7 +44,7 @@
   }
 }
 
-@media (min-width: 850px) {
+@media (min-width: 950px) {
   .desktop-menu {
     display: block;
   }

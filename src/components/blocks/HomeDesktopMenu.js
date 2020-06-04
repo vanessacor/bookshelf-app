@@ -7,7 +7,7 @@ function HomeDesktopMenu(props) {
   return (
     <div className="desktop-menu">
       <button onClick={onClick} className="button desktop-menu-button">
-        Add
+        <ion-icon name="add-outline"></ion-icon>
       </button>
       {toggled && (
         <div className="desktop-menu-list">

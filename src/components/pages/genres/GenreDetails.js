@@ -48,7 +48,7 @@ class GenreDetails extends Component {
         <Button
           className={"delete"}
           onClick={this.handleDelete}
-          title={"Delete Genre"}
+          title={"Delete"}
         />
       </div>
     );

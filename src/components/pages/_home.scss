@@ -4,7 +4,8 @@
   }
   &-information {
     padding: 10px 10px 5px;
-    margin-bottom: 30px;
+    margin: auto;
+    max-width: calc(555px + 0.5vw);
     border-radius: 5px;
     box-shadow: 1px 1px 5px $accent-color-light;
 

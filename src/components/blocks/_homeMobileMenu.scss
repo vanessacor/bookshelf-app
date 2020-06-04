@@ -8,7 +8,7 @@
   &-button {
     position: absolute;
     right: 20px;
-    bottom: -65px;
+    top: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +58,7 @@
   }
 }
 
-@media (min-width: 850px) {
+@media (min-width: 950px) {
   .mobile-menu {
     display: none;
   }

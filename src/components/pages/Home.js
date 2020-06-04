@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { withApiClient } from "../../services/withApiClient";
 import HomeMobileMenu from "../blocks/HomeMobileMenu";
@@ -11,6 +10,8 @@ class Home extends Component {
     bookCount: "",
     authorCount: "",
     genreCount: "",
+    booksRead: "",
+    booksUnread: "",
     toggled: false,
   };
 
@@ -23,6 +24,8 @@ class Home extends Component {
         bookCount: data.count.bookCount,
         authorCount: data.count.authorCount,
         genreCount: data.count.genreCount,
+        booksRead: data.count.bookReadCount,
+        booksUnread: data.count.bookUnreadCount,
       });
     });
   }
@@ -32,23 +35,33 @@ class Home extends Component {
   };
 
   render() {
-    const { bookCount, authorCount, genreCount, toggled } = this.state;
+    const {
+      bookCount,
+      authorCount,
+      genreCount,
+      booksRead,
+      booksUnread,
+      toggled,
+    } = this.state;
     return (
       <div className="home">
+        <HomeDesktopMenu toggled={toggled} onClick={this.showAddMenu} />
         <div className="home-information">
           <h3>Information</h3>
 
           <div className="home-information-count">
             <p>Books:</p>
             <span>{bookCount}</span>
+            <p>Books Read:</p>
+            <span>{booksRead}</span>
+            <p>Books Unread:</p>
+            <span>{booksUnread}</span>
             <p>Authors:</p>
             <span>{authorCount}</span>
             <p>Genres:</p>
             <span>{genreCount}</span>
           </div>
         </div>
-
-        <HomeDesktopMenu toggled={toggled} onClick={this.showAddMenu} />
 
         <HomeMobileMenu toggled={toggled} onClick={this.showAddMenu} />
       </div>

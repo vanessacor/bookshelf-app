@@ -1,3 +1,9 @@
-// .details-author {
+.details-author {
+  p:last-of-type {
+    margin-bottom: 30px;
+  }
 
-// }
+  :last-child {
+    margin-bottom: 15px;
+  }
+}
