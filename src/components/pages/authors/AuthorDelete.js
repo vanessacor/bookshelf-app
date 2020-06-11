@@ -66,9 +66,10 @@ class AuthorDelete extends Component {
     } else {
       return (
         <div>
+          <h2>Delete Author</h2>
           <h3>{name}</h3>
 
-          <h2>Are you sure you want to delete this author ?</h2>
+          <p>Are you sure you want to delete this author ?</p>
           <Button
             className={"button-delete"}
             onClick={this.deleteAuthor}
