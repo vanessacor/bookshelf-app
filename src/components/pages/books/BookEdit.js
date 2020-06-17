@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { withApiClient } from "../../../services/withApiClient";
+import depopulate from "../../../services/utils/depopulate";
 
 import Input from "../../blocks/form/Input";
 import Select from "../../blocks/form/Select";
@@ -9,21 +10,6 @@ import Button from "../../blocks/Button";
 import MultiCheckBox from "../../blocks/form/MultiCheckBox";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
-function depopulate(book) {
-  const { id, title, author, genre, status, summary, isbn } = book;
-  const authorId = author.id;
-  const genreIds = genre.map((genre) => genre.id);
-
-  return {
-    id,
-    title,
-    author: authorId,
-    genre: genreIds,
-    status,
-    summary,
-    isbn,
-  };
-}
 class BookEdit extends Component {
   constructor(props) {
     super(props);
