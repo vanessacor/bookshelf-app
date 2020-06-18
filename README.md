@@ -15,28 +15,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## todo
 
-- styling:
-
-  - add button
-  - cards responsive
-
 - ux improv
 
   - toast when you save book and author
   - form set focus on componentdidmount
-  - creatAnother checkbox
 
 - cleanup:
-
-  - check for the need fo defensive checks
-  - destructure props and state everyhwere
-  - break big render methods in smaller (especially where there is conditional rendering)
-  - export withApiClient(BookDetails) -> this.props.apiClient.getBookById(id).then...
-
-- frontend validate book create
-  - setState({submitted: true})
-  - if !author || !genre.length ... { save }
-  - {submitted && !author <ValidationFeedback>Author is Required</ValidationFeedback>}
-- fix book form checkboxes
-- fix author form (same as book with check status 201, error or redirect)
-- create Genre pages

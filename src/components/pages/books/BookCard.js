@@ -24,7 +24,6 @@ class BookCard extends Component {
       if (response.status === 200) {
         return response.json();
       } else {
-        // TODO if state.unexpected show "unexpected error"
         this.setState({ unexpectedError: true });
       }
     });

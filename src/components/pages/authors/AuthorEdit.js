@@ -7,11 +7,8 @@ import { withApiClient } from "../../../services/withApiClient";
 import ErrorBanner from "../../blocks/ErrorBanner";
 
 function depopulate(author) {
-  const { id, name, dateOfBirth, dateOfDeath } = author;
+  const { id, firstName, familyName, dateOfBirth, dateOfDeath } = author;
 
-  const nameArray = name.split(" ");
-  const firstName = nameArray[1];
-  const familyName = nameArray[0].slice(0, -1);
   let formatedDateOfBirth;
   let formatedDateOfDeath;
   if (dateOfBirth) {
