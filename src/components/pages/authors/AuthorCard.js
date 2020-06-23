@@ -20,16 +20,14 @@ function AuthorCard(props) {
   }
 
   return (
-    <>
-      <Link to={`${url}`}>
-        <section className="card card-author">
-          <h2>{name}</h2>
-          <div className="card-details card-details-author">
-            {dateOfDeath ? showDateOfDeath() : showAge()}
-          </div>
-        </section>
-      </Link>
-    </>
+    <Link to={`${url}`}>
+      <section className="card card-author">
+        <h2>{name}</h2>
+        <div className="card-details card-details-author">
+          {dateOfDeath ? showDateOfDeath() : showAge()}
+        </div>
+      </section>
+    </Link>
   );
 }
 

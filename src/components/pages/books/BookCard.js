@@ -29,7 +29,10 @@ class BookCard extends Component {
     });
   }
 
-  toggleStatus = () => {
+  toggleStatus = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     this.setState({ updating: true });
 
     const { book } = this.state;
@@ -48,8 +51,8 @@ class BookCard extends Component {
     const { book, updating } = this.state;
     const { title, author, status, url } = book;
     return (
-      <section className="card card-book">
-        <Link to={url}>
+      <Link to={url}>
+        <section className="card card-book">
           <h2>{title}</h2>
           <div className="card-details card-details-book">
             {author && (
@@ -58,15 +61,22 @@ class BookCard extends Component {
               </>
             )}
           </div>
-        </Link>
 
-        <Button
-          disabled={updating}
-          className={status === "Read" ? "book-read" : "book-unread"}
-          onClick={this.toggleStatus}
-          title={status}
-        />
-      </section>
+          <div className="toggle">
+            <button
+              disabled={updating}
+              onClick={this.toggleStatus}
+              className={
+                status === "Read"
+                  ? "toggle-button book-read"
+                  : "toggle-button book-unread"
+              }
+            >
+              <span className="toggle-circle"></span>
+            </button>
+          </div>
+        </section>
+      </Link>
     );
   }
 }

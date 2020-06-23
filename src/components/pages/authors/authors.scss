@@ -22,6 +22,10 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 
+    > * {
+      margin: 0 15px 30px;
+    }
+
     a {
       text-decoration: none;
       color: $font-color;

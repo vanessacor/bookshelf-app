@@ -1,12 +1,12 @@
 .add-fab {
   position: fixed;
-  right: 50px;
+  right: 20px;
   bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(56px + 0.5vw);
-  height: calc(56px + 0.5vw);
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border-style: none;
   border-color: none;
@@ -21,9 +21,10 @@
     transform: scale(1.05);
   }
   a {
+    display: flex;
     text-decoration: none;
     text-align: center;
-    font-size: 26px;
+    font-size: 28px;
     color: $base-color-light;
   }
 

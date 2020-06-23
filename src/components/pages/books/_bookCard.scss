@@ -1,6 +1,7 @@
 .card-book {
   position: relative;
   .card-details-book {
+    margin-bottom: 20px;
     p {
       font-style: italic;
       font-weight: bold;
@@ -12,23 +13,61 @@
       font-weight: bold;
       color: #a1683a;
     }
-
-    //
-  }
-  button {
-    position: absolute;
-    bottom: 10px;
-    width: 95%;
-    padding: 10px;
-    border-radius: 5px;
-    color: #fbf7f4;
-    text-align: center;
   }
 
   .book-read {
-    background-color: #6c9a8b;
+    background-color: $highlight-color;
+    .toggle-circle {
+      position: absolute;
+      top: 9px;
+      left: 6px;
+      width: 22px;
+      height: 22px;
+      background-color: $base-color-light;
+      border-radius: 5px;
+
+      &::before {
+        content: "Read";
+        position: absolute;
+        left: 34px;
+        top: 3px;
+        color: $base-color-light;
+      }
+    }
   }
   .book-unread {
-    background-color: #e8998d;
+    background-color: $accent-color-light;
+    .toggle-circle {
+      position: absolute;
+      top: 9px;
+      left: 62px;
+      width: 22px;
+      height: 22px;
+      background-color: $base-color-light;
+      border-radius: 5px;
+
+      &::before {
+        content: "Unread";
+        position: absolute;
+        left: -54px;
+        top: 3px;
+        color: $base-color-light;
+      }
+    }
+  }
+
+  .toggle {
+    position: absolute;
+    bottom: 50px;
+    padding-top: 10px;
+  }
+
+  .toggle-button {
+    position: absolute;
+    width: 90px;
+    height: 40px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
   }
 }

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function HeaderNav() {
   return (
     <nav className="header-menu">
-      <NavLink className="menu-item" activeClassName="selected" to="/home">
+      <NavLink className="menu-item" activeClassName="selected" exact to="/">
         Home
       </NavLink>
       <NavLink className="menu-item" activeClassName="selected" to="/books">

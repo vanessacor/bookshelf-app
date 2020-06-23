@@ -1,15 +1,16 @@
 .button {
+  padding: 10px;
+  font-size: calc(20px + 0.5vw);
+  color: $base-color-light;
   border: none;
   background-color: $highlight-color;
   box-shadow: 1px 1px 5px $accent-color-dark;
   border-radius: 3px;
-  transition: 1s;
-  color: $base-color-light;
-  font-size: calc(20px + 0.5vw);
+  transition: color 1s, background-color 1s;
 
   &:hover {
-    box-shadow: none;
     color: $font-color;
+    box-shadow: none;
   }
 
   &-submit {
