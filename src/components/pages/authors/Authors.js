@@ -12,13 +12,12 @@ class Authors extends Component {
     authors: undefined,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { apiClient } = this.props;
-    apiClient.getAllAuthors().then((data) => {
-      this.setState({
-        loading: false,
-        authors: data,
-      });
+    const data = await apiClient.getAllAuthors();
+    this.setState({
+      loading: false,
+      authors: data,
     });
   }
 

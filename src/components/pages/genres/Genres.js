@@ -11,14 +11,15 @@ class Genres extends Component {
     genres: undefined,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { apiClient } = this.props;
-    apiClient.getAllGenres().then((data) => {
+
+    const data = await apiClient.getAllGenres();
       this.setState({
         loading: false,
         genres: data,
       });
-    });
+    
   }
 
   render() {

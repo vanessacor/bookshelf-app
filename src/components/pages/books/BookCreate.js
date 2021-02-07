@@ -28,17 +28,18 @@ class BookCreate extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { apiClient } = this.props;
 
-    Promise.all([apiClient.getAllAuthors(), apiClient.getAllGenres()]).then(
-      ([res1, res2]) => {
-        this.setState({
-          authorsOptions: res1,
-          genreOptions: res2,
-        });
-      }
-    );
+    const [res1, res2] = await Promise.all([
+      apiClient.getAllAuthors(),
+      apiClient.getAllGenres(),
+    ]);
+
+    this.setState({
+      authorsOptions: res1,
+      genreOptions: res2,
+    });
   }
 
   isInputValid(input) {
@@ -90,7 +91,6 @@ class BookCreate extends Component {
           history.push(data.url);
         });
       } else {
-        // TODO if state.unexpected show "unexpected error"
         this.setState({ unexpectedError: true });
       }
     });

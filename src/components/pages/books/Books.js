@@ -12,14 +12,13 @@ class Books extends React.Component {
     books: undefined,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { apiClient } = this.props;
 
-    apiClient.getAllBooks().then((data) => {
-      this.setState({
-        loading: false,
-        books: data,
-      });
+    const data = await apiClient.getAllBooks();
+    this.setState({
+      loading: false,
+      books: data,
     });
   }
 
